@@ -7,22 +7,22 @@ function Navigation() {
     <nav className='navigation'>
       <ul>
         <li>
-          <NavLink exact to='/' activeClassName='active'>
+          <NavLink to='/' activeClassName='active'>
             Landing
           </NavLink>
         </li>
         <li>
-          <NavLink exact to='/home' activeClassName='active'>
+          <NavLink to='/home' activeClassName='active'>
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink exact to='/account' activeClassName='active'>
+          <NavLink to='/account' activeClassName='active'>
             Account
           </NavLink>
         </li>
         <li>
-          <NavLink exact to='/signin' activeClassName='active'>
+          <NavLink to='/signin' activeClassName='active'>
             Sign-In
           </NavLink>
         </li>

@@ -24,7 +24,17 @@ const customStyles = {
 
 function AddModal(props) {
   const [showAddModal, setShowAddModal] = useState(props.isOpen);
-  const [addEmployee] = useMutation(queries.ADD_EMPLOYEE);
+  const [addEmployee] = useMutation(queries.ADD_EMPLOYEE, {
+    update(cache, {data: {addEmployee}}) {
+      const {employees} = cache.readQuery({
+        query: queries.GET_EMPLOYEES,
+      });
+      cache.writeQuery({
+        query: queries.GET_EMPLOYEES,
+        data: {employees: employees.concat([addEmployee])},
+      });
+    },
+  });
 
   const [addEmployer] = useMutation(queries.ADD_EMPLOYER, {
     update(cache, {data: {addEmployer}}) {

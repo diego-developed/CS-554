@@ -4,7 +4,7 @@ import ChildChildComponent from './ChildChildComponent';
 const ChildComponent = () => {
   const [theme] = useContext(ThemeContext);
   return (
-    <div>
+    <div className='Child'>
       <p style={theme}>Hello World from the child</p>
       <ChildChildComponent />
     </div>

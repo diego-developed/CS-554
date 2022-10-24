@@ -18,11 +18,11 @@ function Form() {
 
     let user = {
       firstName,
-      lastName
+      lastName,
     };
 
-    const {data} = await axios.post('http://localhost:3002/users', user, {
-      headers: {Accept: 'application/json'}
+    const {data} = await axios.post('http://localhost:3001/users', user, {
+      headers: {Accept: 'application/json'},
     });
     console.log(data);
     setPostData(data);

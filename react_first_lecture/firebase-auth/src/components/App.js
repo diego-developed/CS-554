@@ -3,7 +3,6 @@ import '../App.css';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Account from './Account';
 import ChangePassword from './ChangePassword';
-import ForgotPassword from './ForgotPassword';
 import Home from './Home';
 import Landing from './Landing';
 import Navigation from './Navigation';
@@ -25,7 +24,6 @@ function App() {
         <Route path='signin' element={<SignIn />} />
         <Route path='signup' element={<SignUp />} />
         <Route path='changepassword' element={<ChangePassword />} />
-        <Route path='forgotpassword' element={<ForgotPassword />} />
       </Routes>
     </Router>
   );

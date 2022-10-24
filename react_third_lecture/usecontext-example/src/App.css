@@ -1,6 +1,17 @@
 .App {
   text-align: center;
+  border: 1px solid red;
 }
+
+.Child {
+  text-align: center;
+  border: 1px solid green;
+}
+.ChildChild {
+  text-align: center;
+  border: 1px solid blue;
+}
+
 
 .App-logo {
   height: 40vmin;

@@ -8,7 +8,7 @@ const useAxios = (url) => {
     axios.get(url).then(({data}) => {
       setState({data: data, loading: false});
     });
-  }, [url, setState]);
+  }, [url]);
 
   return state;
 };

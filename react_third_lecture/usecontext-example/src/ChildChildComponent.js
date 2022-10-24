@@ -4,7 +4,7 @@ import ThemeContext from './ThemeContext';
 const ChildChildComponent = () => {
   const [theme, setTheme] = useContext(ThemeContext);
   return (
-    <div>
+    <div className='ChildChild'>
       <p style={theme}>Hello World from the child's child!</p>
 
       <button onClick={() => setTheme({color: 'purple', fontWeight: 'bold'})}>

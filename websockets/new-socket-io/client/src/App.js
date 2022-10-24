@@ -26,6 +26,11 @@ function App() {
         {name: 'ChatBot', message: `${data} has joined the chat`},
       ]);
     });
+
+    return () => {
+      socketRef.current.off('message');
+      socketRef.current.off('user-join');
+    };
   }, [chat]);
 
   const userjoin = (name) => {

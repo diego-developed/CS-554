@@ -10,11 +10,8 @@ function ChangePassword() {
 
   const submitForm = async (event) => {
     event.preventDefault();
-    const {
-      currentPassword,
-      newPasswordOne,
-      newPasswordTwo
-    } = event.target.elements;
+    const {currentPassword, newPasswordOne, newPasswordTwo} =
+      event.target.elements;
 
     if (newPasswordOne.value !== newPasswordTwo.value) {
       setPwMatch('New Passwords do not match, please try again');
@@ -32,6 +29,7 @@ function ChangePassword() {
       alert(error);
     }
   };
+
   if (currentUser.providerData[0].providerId === 'password') {
     return (
       <div>
