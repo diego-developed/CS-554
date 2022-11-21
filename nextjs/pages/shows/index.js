@@ -41,6 +41,6 @@ export async function getStaticProps() {
   const data = await getShowData();
   return {
     props: {data},
-    revalidate: 86400
+    revalidate: 86400,
   };
 }
