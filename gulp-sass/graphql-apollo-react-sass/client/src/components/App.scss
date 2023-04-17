@@ -2,7 +2,14 @@ $patricks-green: darken(#78a298, 10%);
 $patricks-blue:  #28547a;
 $theme-background:  $patricks-blue;
 //$theme-background:  $patricks-green;
- 
+$b-bg: purple;
+$b-size: 5px;
+$b-style: dashed;
+
+
+@mixin my-border ( $size, $style, $color, ) {
+	border: $size $style $color;
+}
 
 .App {
 	text-align: center;
@@ -24,6 +31,7 @@ input, button {
 	padding: 20px;
 	color: #222;
 	position: relative;
+	@include my-border($b-size,$b-style,$b-bg)
 }
 
 .App-title {

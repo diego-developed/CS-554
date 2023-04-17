@@ -31,25 +31,34 @@ p {
 }
 
 section.#{$section-content-class} {
-	h2 {
-		@include border-bottom(2px, $green);
-	}
-	p {
-		@if $section-content-class==section-content {
+	@if $section-content-class==section-content{
+		h2 {
+			@include border-bottom(2px, $green);
+		}
+		p{
 			font-size: 12pt;
 			color: $patricks-green;
-		} @else {
-			font-size: $secondary-font-size+6pt;
-			text-decoration: underline;
 		}
-		span {
-			font-style: italic;
-			color: red;
+	} @else {
+		h2 {
+			@include border-bottom(10px, $blue);
 		}
+		p{
+		font-size: $secondary-font-size+32pt;
+		text-decoration: underline;
+		color: red;
 	}
+	span {
+		font-style: italic;
+		color: blue;
+	}
+	}
+	
 	
 	
 }
+
+
 
 div.#{$div-circle-class}{
 	@include circle(blue)
