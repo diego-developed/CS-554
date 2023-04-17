@@ -61,7 +61,28 @@ section.#{$section-content-class} {
 
 
 div.#{$div-circle-class}{
-	@include circle(blue)
+	@include circle($patricks-green)
+}
+
+@each $pet in dog,cat,bird{
+	@if $pet == dog{
+		.#{$pet}{
+			color: blue;
+			background-color: yellow;
+		}
+	} @else if $pet == cat{
+		.#{$pet}{
+			color: green;
+			background-color: purple;
+		}
+	} @else if $pet == bird{
+		.#{$pet}{
+			color: red;
+			background-color: orange;
+		}
+	}
+
+	
 }
 
 

@@ -32344,6 +32344,21 @@ section.section-content p {
 div.div-circle {
   width: 200px;
   height: 200px;
-  background: blue;
+  background: #78a298;
   border-radius: 50%;
+}
+
+.dog {
+  color: blue;
+  background-color: yellow;
+}
+
+.cat {
+  color: green;
+  background-color: purple;
+}
+
+.bird {
+  color: red;
+  background-color: orange;
 }

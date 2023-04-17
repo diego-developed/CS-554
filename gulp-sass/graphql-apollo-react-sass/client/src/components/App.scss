@@ -2,9 +2,9 @@ $patricks-green: darken(#78a298, 10%);
 $patricks-blue:  #28547a;
 $theme-background:  $patricks-blue;
 //$theme-background:  $patricks-green;
-$b-bg: purple;
-$b-size: 5px;
-$b-style: dashed;
+$b-bg: red;
+$b-size: 10px;
+$b-style: solid;
 
 
 @mixin my-border ( $size, $style, $color, ) {
@@ -94,6 +94,13 @@ nav {
 	color: $theme-background;
 	text-decoration: none !important;
 	margin-right: 20px;
+	&:hover{
+		background-color: $theme-background;
+		color: red ;
+		border: 1px solid purple;
+		text-decoration: none
+	}
+
 }
 
 .button {
@@ -102,21 +109,15 @@ nav {
 	border-radius: 3px;
 	color: white;
 	text-decoration: none !important;
+	&:hover {
+		padding: 0.4rem 0.8rem;
+		background-color: purple;
+		border-radius: 3px;
+		color: $theme-background;
+		text-decoration: none !important;
+	}
 }
 
-.button:hover {
-	padding: 0.4rem 0.8rem;
-	background-color: white;
-	border-radius: 3px;
-	color: $theme-background;
-	text-decoration: none !important;
-}
-
-.navlink:hover {
-	background-color: transparent;
-	color: white;
-	border: 1px solid white;
-}
 
 input,
 select {
