@@ -32316,17 +32316,12 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-* {
-  box-sizing: border-box;
-}
-
 body,
 html {
   background: white;
-  color: #496b63;
+  color: black;
   font-family: Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 14pt;
-  background-clip: border-box;
 }
 
 p {
@@ -32346,6 +32341,25 @@ div.div-circle {
   height: 200px;
   background: #78a298;
   border-radius: 50%;
+}
+
+div.anotherDivCircle {
+  width: 200px;
+  height: 200px;
+  background: blue;
+  border-radius: 50%;
+}
+
+.error, .serious-error {
+  background-color: red;
+  font-weight: bold;
+  color: white;
+}
+
+.serious-error {
+  font-weight: bolder;
+  color: yellow;
+  border: 3px solid yellow;
 }
 
 .dog {
