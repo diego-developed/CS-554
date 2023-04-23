@@ -12,7 +12,7 @@
 @mixin border-bottom($size, $color) {
 	border-bottom: $size solid $color;
 }
-
+ 
 body,
 html {
 	background: $body-background;
