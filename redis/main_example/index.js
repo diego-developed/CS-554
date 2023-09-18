@@ -61,11 +61,9 @@ const main = async () => {
       1: 'making low carb recipes',
       sport: 'Baseball'
     },
-    age: 46
+    age: 47
   };
 
-  //
-  //let hmSetAsyncBioJson = await client.hmsetAsync('bio', jsonString);
   let flatBio = flat(bio);
   console.log(flatBio);
   let hmSetAsyncBio = await client.hSet('bio', flatBio);
@@ -86,6 +84,30 @@ const main = async () => {
   const jsonBioFromRedis = await client.get('patrickJsonBio');
   const recomposedBio = JSON.parse(jsonBioFromRedis);
   console.log(recomposedBio);
+
+  //This code will ONLY work if you have the RedisJson module installed into redis-server or you use redis-stack-server
+  const redisJson = await client.json.set('redisJsonBio', '$', bio);
+  console.log(await client.json.get('redisJsonBio'));
+  const incAge = await client.json.NUMINCRBY('redisJsonBio', '$.age', 1);
+  console.log(await client.json.get('redisJsonBio'));
+
+  //add a new to the object:
+
+  const addKey = await client.json.set('redisJsonBio', '$.favoriteMovies', [
+    'Breakfast Club',
+    'Hidden Figures',
+    'The Goonies'
+  ]);
+
+  console.log(await client.json.get('redisJsonBio'));
+
+  const addFavMovie = await client.json.arrAppend(
+    'redisJsonBio',
+    '$.favoriteMovies',
+    'Office Space'
+  );
+
+  console.log(await client.json.get('redisJsonBio'));
 };
 
 main();

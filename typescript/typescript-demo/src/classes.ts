@@ -16,10 +16,10 @@ class User implements UserInterface {
 		this.email = email;
 		this.age = age;
 	}
-	register(): any  {
+	register(): void  {
 		console.log(`${this.name} is now registered`);
 	}
-	payInvoice(): any {
+	payInvoice(): void {
 		console.log(`${this.name} has paid their invoice`);
 	}
 }

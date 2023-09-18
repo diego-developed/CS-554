@@ -1,6 +1,6 @@
 <template>
   <div v-if="this.errorMessage">
-  <h3>SHOW NOT FOUND!</h3>
+  <h3>{{ this.errorMessage }}</h3>
   </div>
   <div v-else>
     <h1>{{this.show.name}}</h1>

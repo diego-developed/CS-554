@@ -13,7 +13,7 @@ myAny = 'Patrick';
 myAny = true;
 myAny = [1, 2, 3];
 let myStrArray;
-myStrArray = [myString, 'Nikki', 'Tommy', 'Mick'];
+myStrArray = [myString, 'Nikki', 'Tommy', 'Mick',];
 let strArr2;
 strArr2 = [myString, 'Nikki', 'Tommy', 'Mick'];
 let strNumTuple;

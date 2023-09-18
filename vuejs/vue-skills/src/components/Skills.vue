@@ -41,8 +41,7 @@ export default {
     return {
       skills: [{ skill: "Vue.js" }, { skill: "React" }, { skill: "Redis" }],
       skill: "",
-      email: "",
-      isValidForm: false
+      email: ""
 
     };
   },
