@@ -1,7 +1,6 @@
 //Create the type definitions for the query and our data
-import {gql} from 'apollo-server';
 
-export const typeDefs = gql`
+export const typeDefs = `#graphql
   type Query {
     employers: [Employer]
     employees: [Employee]

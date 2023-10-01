@@ -11,7 +11,7 @@
   "author": "Patrick Hill",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^3.12.1",
+    "@apollo/server": "^4.9.3",
     "graphql": "^16.8.1",
     "mongodb": "^6.1.0",
     "uuid": "^9.0.1"

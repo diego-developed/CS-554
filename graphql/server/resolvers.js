@@ -1,3 +1,5 @@
+import {GraphQLError} from 'graphql';
+
 import {
   employees as employeeCollection,
   employers as employerCollection
@@ -20,11 +22,21 @@ export const resolvers = {
     employer: async (_, args) => {
       const employers = await employerCollection();
       const employer = await employers.findOne({_id: args._id});
+      if (!employer) {
+        throw new GraphQLError('Employer Not Found', {
+          extensions: {code: '404'}
+        });
+      }
       return employer;
     },
     employee: async (_, args) => {
       const employees = await employeeCollection();
       const employee = await employees.findOne({_id: args._id});
+      if (!employee) {
+        throw new GraphQLError('Employee Not Found', {
+          extensions: {code: '404'}
+        });
+      }
       return employee;
     },
     employers: async () => {
