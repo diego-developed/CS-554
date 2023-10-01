@@ -2,19 +2,18 @@
   "name": "graphql-apollo-react",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
+    "start": "node server.js",
     "seed": "node ./tasks/seed.js"
   },
   "author": "Patrick Hill",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^3.12.0",
-    "graphql": "^16.6.0",
-    "mongodb": "^5.1.0",
-    "uuid": "^9.0.0"
+    "apollo-server": "^3.12.1",
+    "graphql": "^16.8.1",
+    "mongodb": "^6.1.0",
+    "uuid": "^9.0.1"
   }
 }

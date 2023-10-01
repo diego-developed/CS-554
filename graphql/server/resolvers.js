@@ -1,51 +1,9 @@
-import {ApolloServer, gql} from 'apollo-server';
 import {
   employees as employeeCollection,
   employers as employerCollection
 } from './config/mongoCollections.js';
 
 import {v4 as uuid} from 'uuid'; //for generating _id's
-
-//Create the type definitions for the query and our data
-const typeDefs = gql`
-  type Query {
-    employers: [Employer]
-    employees: [Employee]
-    employer(_id: Int): Employer
-    employee(_id: String): Employee
-  }
-
-  type Employer {
-    _id: Int
-    name: String
-    employees: [Employee]
-    numOfEmployees: Int
-  }
-
-  type Employee {
-    _id: String
-    firstName: String
-    lastName: String
-    employer: Employer
-  }
-
-  type Mutation {
-    addEmployee(
-      firstName: String!
-      lastName: String!
-      employerId: Int!
-    ): Employee
-    removeEmployee(_id: String!): Employee
-    editEmployee(
-      _id: String!
-      firstName: String
-      lastName: String
-      employerId: Int
-    ): Employee
-    addEmployer(name: String!): Employer
-  }
-`;
-
 /* parentValue - References the type def that called it
     so for example when we execute numOfEmployees we can reference
     the parent's properties with the parentValue Paramater
@@ -57,7 +15,7 @@ const typeDefs = gql`
 		
 */
 
-const resolvers = {
+export const resolvers = {
   Query: {
     employer: async (_, args) => {
       const employers = await employerCollection();
@@ -161,9 +119,3 @@ const resolvers = {
     }
   }
 };
-
-const server = new ApolloServer({typeDefs, resolvers});
-
-server.listen().then(({url}) => {
-  console.log(`🚀  Server ready at ${url} 🚀`);
-});
