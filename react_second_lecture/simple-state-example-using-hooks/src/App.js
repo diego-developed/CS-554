@@ -9,8 +9,12 @@ const App = (props) => {
       <p>
         The current text is {text || 'NO TEXT'}. The current count is: {count}
       </p>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-      <button onClick={() => (count <= 0 ? setCount(0) : setCount(count - 1))}>
+      <button onClick={() => setCount((count) => count + 1)}>Increment</button>
+      <button
+        onClick={() =>
+          count <= 0 ? setCount(0) : setCount((count) => count - 1)
+        }
+      >
         Decrement
       </button>
       <button onClick={() => setCount(0)}>Reset</button>

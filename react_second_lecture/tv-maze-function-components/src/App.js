@@ -27,8 +27,10 @@ const App = () => {
         <div className='App-body'>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/shows' element={<ShowList />} />
-            <Route path='/shows/:id' element={<Show />} />
+            <Route path='/shows'>
+              <Route path='/shows' element={<ShowList />} />
+              <Route path='/shows/:id' element={<Show />} />
+            </Route>
           </Routes>
         </div>
       </div>
