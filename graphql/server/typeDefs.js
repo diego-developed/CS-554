@@ -4,14 +4,14 @@ export const typeDefs = `#graphql
   type Query {
     employers: [Employer]
     employees: [Employee]
-    employer(_id: Int): Employer
-    employee(_id: String): Employee
+    employer(_id: Int!): Employer
+    employee(_id: String!): Employee
   }
 
   type Employer {
     _id: Int
     name: String
-    employees: [Employee]
+    employees: [Employee],
     numOfEmployees: Int
   }
 

@@ -1,13 +1,13 @@
-import React from 'react';
-import '../App.css';
+
+import './App.css';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import Account from './Account';
-import ChangePassword from './ChangePassword';
-import Home from './Home';
-import Landing from './Landing';
-import Navigation from './Navigation';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
+import Account from './Account.jsx';
+import ChangePassword from './ChangePassword.jsx';
+import Home from './Home.jsx';
+import Landing from './Landing.jsx';
+import Navigation from './Navigation.jsx';
+import SignIn from './SignIn.jsx';
+import SignUp from './SignUp.jsx';
 
 function App() {
   return (
