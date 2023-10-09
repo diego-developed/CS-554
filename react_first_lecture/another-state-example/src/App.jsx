@@ -3,7 +3,7 @@ import './App.css'
 import Product from './components/Products.jsx';
 function App() {
   const [productsClicked, setProductsClicked] = useState([])
-
+  let count = 0
   const handleChildClick = (item) => {
     setProductsClicked((prevState)=>{
       console.log (prevState)
@@ -16,8 +16,8 @@ function App() {
     <div>
         <div className='stateDisplay'>
           {productsClicked.map((item) => (
-            <div key={item.productName}>
-              {item}
+            <div key={item.productName + count++}>
+              {item.productName}
               <br />
             </div>
           ))}

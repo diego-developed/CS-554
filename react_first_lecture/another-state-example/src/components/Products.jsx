@@ -1,7 +1,7 @@
 function Product (props) {
   const buttonClick = () => {
     alert(props.product.productName + ' was clicked');
-    props.handleClick(props.product.productName);
+    props.handleClick(props.product);
   };
   
     return (
