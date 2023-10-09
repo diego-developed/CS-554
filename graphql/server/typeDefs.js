@@ -11,7 +11,7 @@ export const typeDefs = `#graphql
   type Employer {
     _id: Int
     name: String
-    employees: [Employee],
+    employees: [Employee]
     numOfEmployees: Int
   }
 
