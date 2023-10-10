@@ -1,28 +1,26 @@
 import { useState } from 'react'
+import Product from './components/Product.jsx'
 import './App.css'
-import Product from './components/Products.jsx';
+let count = 0
 function App() {
   const [productsClicked, setProductsClicked] = useState([])
-  let count = 0
-  const handleChildClick = (item) => {
-    setProductsClicked((prevState)=>{
-      console.log (prevState)
-      console.log (item)
-     return [...prevState , item]
-    })
-  };
+
+  const handleChildClick = (item)=>{
+    setProductsClicked((prevState)=>[...prevState, item])
+  }
 
   return (
-    <div>
-        <div className='stateDisplay'>
-          {productsClicked.map((item) => (
-            <div key={item.productName + count++}>
-              {item.productName}
-              <br />
-            </div>
-          ))}
+    <>
+     <div className='stateDisplay'>
+      {productsClicked.map((item)=>(
+        <div key={item.productName + count++} >
+          {item.productName}
+          <br/>
         </div>
-        <Product
+      ))}
+
+     </div>
+       <Product
           product={{
             productName: 'Pixel 4',
             productDesc:
@@ -32,8 +30,7 @@ function App() {
           }}
           handleClick={handleChildClick}
         />
-
-        <Product
+         <Product
           product={{
             productName: 'IPhone 11',
             productDesc: "The iPhone11 is Apple's newest phone, You know you want to buy it now because it's Apple!",
@@ -42,8 +39,7 @@ function App() {
           }}
           handleClick={handleChildClick}
         />
-      </div>
- 
+    </>
   )
 }
 
