@@ -17,7 +17,7 @@ const ShowList = () => {
   const [searchData, setSearchData] = useState(undefined);
   const [showsData, setShowsData] = useState(undefined);
   const [searchTerm, setSearchTerm] = useState('');
-  let card = null;
+  let cardsData = null;
 
   useEffect(() => {
     console.log('on load useeffect');
@@ -59,14 +59,14 @@ const ShowList = () => {
   
 
   if (searchTerm) {
-    card =
+    cardsData =
       searchData &&
       searchData.map((shows) => {
         let {show} = shows;
         return <ShowListCard show ={show} key={show.id}/>;
       });
   } else {
-    card =
+    cardsData =
       showsData &&
       showsData.map((show) => {
         return <ShowListCard show ={show} key={show.id}/>;
@@ -93,7 +93,7 @@ const ShowList = () => {
             flexDirection: 'row'
           }}
         >
-          {card}
+          {cardsData}
         </Grid>
       </div>
     );

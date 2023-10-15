@@ -2,6 +2,7 @@ import logo from './img/tvm-header-logo.png';
 import './App.css';
 import ShowList from './components/ShowList';
 import Show from './components/Show';
+import Home from './components/Home'
 import { Route, Link, Routes} from 'react-router-dom';
 
 const App = () => {
@@ -17,13 +18,11 @@ const App = () => {
         </header>
         <br />
         <br />
-        <div className='App-body'>
-          <p>Welcome to the TV Maze API example</p>
           <Routes>
+          <Route path='/' element ={<Home/>}/>
           <Route path='/shows'  element={<ShowList/>} />
           <Route path='/shows/:id'  element={<Show/>} />
           </Routes>
-        </div>
       </div>
    
   );
