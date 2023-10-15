@@ -1,4 +1,4 @@
-import PropsExample from "./PropsExample.jsx"
+import PropsExample from "./PropsExample"
 
 function App() {
 const greeting = 'Hello Function Components!'

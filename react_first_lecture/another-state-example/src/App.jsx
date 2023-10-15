@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Product from './components/Product.jsx'
+import Product from './components/Product'
 import './App.css'
 let count = 0
 function App() {

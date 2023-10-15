@@ -9,7 +9,7 @@ function Clock(props) {
 
     const  tick = () => {
       setClock(new Date());
-      setCounter((counter) => counter + 1);
+      setCounter( (prevState)=> prevState + 1);
     };
 
     return () => {
