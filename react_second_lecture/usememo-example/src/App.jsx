@@ -7,6 +7,8 @@ function App() {
     <div className='App'>
       <NoMemo />
       <Memo/>
+      <cite>Code Example from Geeks for Geeks</cite>
+      <cite>https://www.geeksforgeeks.org/react-js-usememo-hook/</cite>
     </div>
   );
 }

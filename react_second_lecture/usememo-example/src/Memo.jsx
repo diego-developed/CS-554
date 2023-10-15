@@ -19,7 +19,7 @@ const counterHander = () => {
 }
 return (
 	<div className="App">
-	<h1>Welcome to Geeksforgeeks</h1>
+	<h1>Use Memo Hook</h1>
 	<input type="number" placeholder="Enter a number"
 		value={number} onChange={onChangeHandler}>
 	</input>
