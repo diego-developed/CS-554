@@ -1,4 +1,3 @@
-import React, {useState, useCallback} from 'react';
 import './App.css';
 import Callback from './Callback';
 import NoCallback from './NoCallback';
