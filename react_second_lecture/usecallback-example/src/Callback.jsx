@@ -1,32 +1,45 @@
+
 import React, {useState, useCallback} from 'react';
-let funcCount = new Set();
-const Callback = (props) => {
-  const [count, setCount] = useState(0);
-  const [number, setNumber] = useState(0);
+let funCount = new Set()
 
-  const incrementCounter = useCallback(() => {
-    setCount(count + 1);
-  }, [count]);
-  const decrementCounter = useCallback(() => {
-    setCount(count - 1);
-  }, [count]);
-  const incrementNumber = useCallback(() => {
-    setNumber(number + 1);
-  }, [number]);
+function Callback(props) {
+    const [count, setCount] = useState(0)
+    const [number, setNumber] = useState(0)
 
-  funcCount.add(incrementCounter);
-  funcCount.add(decrementCounter);
-  funcCount.add(incrementNumber);
-  console.log('useCallback:' + funcCount.size);
+    const incrementCounter = useCallback(()=>{
+        setCount((count)=> count + 1)
+    }, [count])
 
-  return (
-    <div>
-      useCallback Count: {count}
-      <button onClick={incrementCounter}>Increase counter</button>
-      <button onClick={decrementCounter}>Decrease Counter</button>
-      <button onClick={incrementNumber}>increase number</button>
-    </div>
-  );
-};
+
+    const decrementCounter = useCallback(()=>{
+        setCount((count)=> count - 1)
+    }, [count])
+
+  
+    const incrementNumber = useCallback(()=>{
+        setNumber((number)=> number+1)
+    }, [number])
+
+    funCount.add(incrementCounter)
+    funCount.add(decrementCounter)
+    funCount.add(incrementNumber)
+    console.log ("useCallback:", funCount.size)
+
+    return (
+        <div>
+            <div>
+             useCallback Count: {count}
+            </div>
+
+            <div>
+             useCallback Number: {number}
+            </div>
+            
+            <button onClick={incrementCounter}> Increase Counter</button>
+            <button onClick={decrementCounter}> Decrease Counter</button>
+            <button onClick={incrementNumber}> Increase Number</button>
+        </div>
+    );
+}
 
 export default Callback;
