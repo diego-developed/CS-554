@@ -34,6 +34,7 @@ return (
 // function to square the value
 function squareNum(number){
 console.log("Memo: Squaring will be done!");
+console.log (Math.pow(number, 2))
 return Math.pow(number, 2);
 }
 
