@@ -15,10 +15,10 @@ function App() {
     
         <div>
           <header className='App-header'>
-            <h1 className='App-title'>
+            <h1 className='App-title center'>
               GraphQL With Apollo Client/Server Demo
             </h1>
-            <nav>
+            <nav className='center' >
               <NavLink className='navlink' to='/'>
                 Home
               </NavLink>
