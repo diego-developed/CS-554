@@ -1,44 +1,46 @@
-import firebase from 'firebase/compat/app';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signOut,
+  updateProfile,
+  signInWithEmailAndPassword,
+  updatePassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  sendPasswordResetEmail
+} from 'firebase/auth';
 
 async function doCreateUserWithEmailAndPassword(email, password, displayName) {
-  await firebase.auth().createUserWithEmailAndPassword(email, password);
-  firebase.auth().currentUser.updateProfile({displayName: displayName});
+  const auth = getAuth();
+  await createUserWithEmailAndPassword(auth, email, password);
+  await updateProfile(auth.currentUser, {displayName: displayName});
 }
 
 async function doChangePassword(email, oldPassword, newPassword) {
-  let credential = firebase.auth.EmailAuthProvider.credential(
-    email,
-    oldPassword
-  );
-  await firebase.auth().currentUser.reauthenticateWithCredential(credential);
-  await firebase.auth().currentUser.updatePassword(newPassword);
+  const auth = getAuth();
+  await updatePassword(auth.currentUser, newPassword);
   await doSignOut();
 }
 
 async function doSignInWithEmailAndPassword(email, password) {
-  await firebase.auth().signInWithEmailAndPassword(email, password);
+  let auth = getAuth();
+  await signInWithEmailAndPassword(auth, email, password);
 }
 
 async function doSocialSignIn(provider) {
-  let socialProvider = null;
-  if (provider === 'google') {
-    socialProvider = new firebase.auth.GoogleAuthProvider();
-  } else if (provider === 'facebook') {
-    socialProvider = new firebase.auth.FacebookAuthProvider();
-  }
-  await firebase.auth().signInWithPopup(socialProvider);
+  let auth = getAuth();
+  let socialProvider = new GoogleAuthProvider();
+  await signInWithPopup(auth, socialProvider);
 }
 
 async function doPasswordReset(email) {
-  await firebase.auth().sendPasswordResetEmail(email);
-}
-
-async function doPasswordUpdate(password) {
-  await firebase.auth().updatePassword(password);
+  let auth = getAuth();
+  await sendPasswordResetEmail(auth, email);
 }
 
 async function doSignOut() {
-  await firebase.auth().signOut();
+  let auth = getAuth();
+  await signOut(auth);
 }
 
 export {
@@ -46,7 +48,6 @@ export {
   doSocialSignIn,
   doSignInWithEmailAndPassword,
   doPasswordReset,
-  doPasswordUpdate,
   doSignOut,
   doChangePassword
 };

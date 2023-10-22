@@ -2,9 +2,9 @@ import React from 'react';
 import {doSocialSignIn} from '../firebase/FirebaseFunctions';
 
 const SocialSignIn = () => {
-  const socialSignOn = async (provider) => {
+  const socialSignOn = async () => {
     try {
-      await doSocialSignIn(provider);
+      await doSocialSignIn();
     } catch (error) {
       alert(error);
     }
@@ -12,14 +12,9 @@ const SocialSignIn = () => {
   return (
     <div>
       <img
-        onClick={() => socialSignOn('google')}
+        onClick={() => socialSignOn()}
         alt='google signin'
         src='/imgs/btn_google_signin.png'
-      />
-      <img
-        onClick={() => socialSignOn('facebook')}
-        alt='google signin'
-        src='/imgs/facebook_signin.png'
       />
     </div>
   );

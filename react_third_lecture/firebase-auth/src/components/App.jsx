@@ -1,24 +1,22 @@
 import React from 'react';
 import '../App.css';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import Account from './Account';
 import Home from './Home';
 import Landing from './Landing';
 import Navigation from './Navigation';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
-import {AuthProvider} from '../firebase/Auth';
+import {AuthProvider} from '../firebase/Auth'
 import PrivateRoute from './PrivateRoute';
 function App() {
   return (
     <AuthProvider>
-      <Router>
         <div className='App'>
           <header className='App-header'>
             <Navigation />
           </header>
-        </div>
-        <Routes>
+          <Routes>
           <Route path='/' element={<Landing />} />
           <Route path='/home' element={<PrivateRoute />}>
             <Route path='/home' element={<Home />} />
@@ -29,8 +27,9 @@ function App() {
           <Route path='/signin' element={<SignIn />} />
           <Route path='/signup' element={<SignUp />} />
         </Routes>
-      </Router>
-    </AuthProvider>
+        </div>
+        </AuthProvider>
+        
   );
 }
 
