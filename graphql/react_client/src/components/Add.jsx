@@ -6,8 +6,6 @@ import {useQuery, useMutation} from '@apollo/client';
 //Import the file where my query constants are defined
 import queries from '../queries';
 
-
-
 function Add(props) {
   const [addEmployee] = useMutation(queries.ADD_EMPLOYEE, {
     update(cache, {data: {addEmployee}}) {
@@ -33,6 +31,41 @@ function Add(props) {
     }
   });
 
+  const onSubmitEmployee = (e) => {
+    e.preventDefault();
+    let firstName = document.getElementById("firstName")
+    let lastName = document.getElementById("lastName")
+    let employerId = document.getElementById("employerId")
+    addEmployee({
+      variables: {
+        firstName: firstName.value,
+        lastName: lastName.value,
+        employerId: parseInt(employerId.value)
+      }
+    });
+  
+    employerId.value = '1';
+    document.getElementById("add-employee").reset()
+    alert('Employee Added');
+    props.closeAddFormState()
+   
+    
+  }
+
+  const onSubmitEmployer = (e) => {
+    e.preventDefault();
+   let employer = document.getElementById("employerName")
+    addEmployer({
+      variables: {
+        name: employer.value
+      }
+    });
+    document.getElementById("add-employer").reset()
+    alert('Employer Added');
+    props.closeAddFormState()
+    
+    
+  }
   const {data} = useQuery(queries.GET_EMPLOYERS);
 
   
@@ -42,40 +75,19 @@ function Add(props) {
   }
   let body = null;
   if (props.type === 'employee') {
-    let firstName;
-    let lastName;
-    let employerId;
     body = (
         <div className='card'>
       <form
         className='form'
         id='add-employee'
-        onSubmit={(e) => {
-          e.preventDefault();
-          addEmployee({
-            variables: {
-              firstName: firstName.value,
-              lastName: lastName.value,
-              employerId: parseInt(employerId.value)
-            }
-          });
-        
-          employerId.value = '1';
-          document.getElementById("add-employee").reset()
-          alert('Employee Added');
-          props.closeAddFormState()
-         
-          
-        }}
+        onSubmit={onSubmitEmployee}
       >
         <div className='form-group'>
           <label>
             First Name:
             <br />
             <input
-              ref={(node) => {
-                firstName = node;
-              }}
+              id='firstName'
               required
               autoFocus={true}
             />
@@ -87,9 +99,7 @@ function Add(props) {
             Last Name:
             <br />
             <input
-              ref={(node) => {
-                lastName = node;
-              }}
+              id="lastName"
               required
             />
           </label>
@@ -101,9 +111,8 @@ function Add(props) {
             Employer:
             <select
               className='form-control'
-              ref={(node) => {
-                employerId = node;
-              }}
+                id="employerId"
+            
             >
               {employers &&
                 employers.map((employer) => {
@@ -122,7 +131,7 @@ function Add(props) {
         <button className='button add-button' type='submit'>
           Add Employee
         </button>
-        <button className='button cancel-button' onClick={()=>{
+        <button type="button" className='button cancel-button' onClick={()=>{
             document.getElementById("add-employee").reset()
             props.closeAddFormState()
         }} >
@@ -138,28 +147,13 @@ function Add(props) {
       <form
         className='form'
         id='add-employer'
-        onSubmit={(e) => {
-          e.preventDefault();
-          addEmployer({
-            variables: {
-              name: name.value
-            }
-          });
-          document.getElementById("add-employer").reset()
-          alert('Employer Added');
-          props.closeAddFormState()
-          
-          
-        }}
+        onSubmit={onSubmitEmployer}
       >
         <div className='form-group'>
           <label>
             Employer Name:
             <br />
-            <input
-              ref={(node) => {
-                name = node;
-              }}
+            <input id="employerName"
               required
               autoFocus={true}
             />
@@ -172,7 +166,7 @@ function Add(props) {
         <button className='button' type='submit'>
           Add Employer
         </button>
-        <button className='button' onClick={()=>{
+        <button type="button" className='button' onClick={()=>{
             document.getElementById("add-employer").reset()
             props.closeAddFormState()
         }} >
