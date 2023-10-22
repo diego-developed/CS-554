@@ -7,7 +7,7 @@ import Landing from './Landing';
 import Navigation from './Navigation';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
-import {AuthProvider} from '../firebase/Auth';
+import {AuthProvider} from '../context/AuthContext';
 import PrivateRoute from './PrivateRoute';
 function App() {
   return (

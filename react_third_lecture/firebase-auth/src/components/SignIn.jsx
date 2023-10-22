@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import SocialSignIn from './SocialSignIn';
 import {Navigate} from 'react-router-dom';
-import {AuthContext} from '../firebase/Auth';
+import {AuthContext} from '../context/AuthContext';
 import {
   doSignInWithEmailAndPassword,
   doPasswordReset

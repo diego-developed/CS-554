@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {AuthContext} from '../firebase/Auth';
+import {AuthContext} from '../context/AuthContext';
 import {doChangePassword} from '../firebase/FirebaseFunctions';
 import '../App.css';
 
@@ -34,7 +34,7 @@ function ChangePassword() {
     return (
       <div>
         {pwMatch && <h4 className='error'>{pwMatch}</h4>}
-        <h2>Change Password</h2>
+        <h2>Hi {currentUser.displayName}, Change Your Password Below</h2>
         <form onSubmit={submitForm}>
           <div className='form-group'>
             <label>
@@ -91,8 +91,8 @@ function ChangePassword() {
     return (
       <div>
         <h2>
-          You are signed in using a Social Media Provider, You cannot change
-          your password
+          {currentUser.displayName}, You are signed in using a Social Media
+          Provider, You cannot change your password
         </h2>
       </div>
     );
