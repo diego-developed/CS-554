@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
 import ChildChild from './ChildChild';
-function Child(props) {
+function Child({theme}) {
   return (
     <div className='App'>
-      <p style={props.theme}>I'm the Child</p>
-      <ChildChild theme={props.theme} />
+      <p style={theme}>I'm the Child</p>
+      <ChildChild theme={theme} />
     </div>
   );
 }
