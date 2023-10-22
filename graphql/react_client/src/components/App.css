@@ -78,15 +78,18 @@ nav {
 }
 
 .button {
-	padding: 0.4rem .8rem;
+	padding: 10px;
 	background-color: #28547a;
 	border-radius: 3px;
 	color: white;
 	text-decoration: none !important;
+  margin-top: 10px;
+  margin-right: 5px;
+  
 }
 
 .button:hover {
-	padding: 0.4rem 0.8rem;
+	padding: 10px;
 	background-color: white;
 	border-radius: 3px;
 	color: #28547a;
@@ -110,18 +113,19 @@ select {
 .card {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	width: 50%;
-	margin: 0 auto 20px;
+	margin: 10px auto 20px;
 	height: auto;
+  padding: 20px;
 }
 
 .cancel-button {
-	position: absolute;
+
 	right: 20px;
 	bottom: 20px;
 }
 
 .add-button {
-	position: absolute;
+	padding-right: 5px;
 	bottom: 20px;
 }
 span {

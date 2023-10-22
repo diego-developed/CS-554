@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import '../App.css';
+import './App.css';
 import {useMutation} from '@apollo/client';
 import ReactModal from 'react-modal';
 
 //Import the file where my query constants are defined
-import queries from '../../queries';
+import queries from '../queries';
 
 //For react-modal
 ReactModal.setAppElement('#root');

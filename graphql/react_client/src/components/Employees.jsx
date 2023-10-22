@@ -1,21 +1,19 @@
 import React, {useState} from 'react';
 import './App.css';
-import AddModal from './modals/AddModal';
-import EditEmployeeModal from './modals/EditEmployeeModal';
-import DeleteEmployeeModal from './modals/DeleteEmployeeModal';
 import {useQuery} from '@apollo/client';
 import queries from '../queries';
-
+import Add from "./Add"
+import DeleteEmployeeModal from './DeleteEmployeeModal';
+import EditEmployeeModal from './EditEmployeeModal';
 function Employees() {
+  const [showAddForm, setShowAddForm] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false);
-  const [showAddModal, setShowAddModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [editEmployee, setEditEmployee] = useState(null);
   const [deleteEmployee, setDeleteEmployee] = useState(null);
   const {loading, error, data} = useQuery(queries.GET_EMPLOYEES, {
     fetchPolicy: 'cache-and-network'
   });
-
   const handleOpenEditModal = (employee) => {
     setShowEditModal(true);
     setEditEmployee(employee);
@@ -25,23 +23,23 @@ function Employees() {
     setShowDeleteModal(true);
     setDeleteEmployee(employee);
   };
+  const closeAddFormState = ()=>{
+    setShowAddForm(false)
+  }
+
   const handleCloseModals = () => {
     setShowEditModal(false);
     setShowDeleteModal(false);
-    setShowAddModal(false);
   };
 
-  const handleOpenAddModal = () => {
-    setShowAddModal(true);
-  };
   if (data) {
     const {employees} = data;
-    console.log(employees);
     return (
       <div>
-        <button className='button' onClick={handleOpenAddModal}>
+        <button className='button' onClick={()=>setShowAddForm(!showAddForm)}>
           Create Employee
         </button>
+        {showAddForm && <Add type="employee" closeAddFormState={closeAddFormState}/>}
         <br />
         <br />
 
@@ -57,7 +55,7 @@ function Employees() {
                 <button
                   className='button'
                   onClick={() => {
-                    handleOpenEditModal(employee);
+                    handleOpenEditModal(employee);;
                   }}
                 >
                   Edit
@@ -75,9 +73,7 @@ function Employees() {
             </div>
           );
         })}
-
-        {/*Edit Employee Modal*/}
-        {showEditModal && showEditModal && (
+{showEditModal && showEditModal && (
           <EditEmployeeModal
             isOpen={showEditModal}
             employee={editEmployee}
@@ -85,17 +81,7 @@ function Employees() {
           />
         )}
 
-        {/*Add Employee Modal */}
-        {showAddModal && showAddModal && (
-          <AddModal
-            isOpen={showAddModal}
-            handleClose={handleCloseModals}
-            modal='addEmployee'
-          />
-        )}
-
-        {/*Delete Employee Modal */}
-        {showDeleteModal && showDeleteModal && (
+{showDeleteModal && showDeleteModal && (
           <DeleteEmployeeModal
             isOpen={showDeleteModal}
             handleClose={handleCloseModals}

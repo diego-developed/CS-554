@@ -1,29 +1,14 @@
 import React, {useState} from 'react';
 
-import '../App.css';
-import ReactModal from 'react-modal';
+import './App.css';
+
 import {useQuery, useMutation} from '@apollo/client';
 //Import the file where my query constants are defined
-import queries from '../../queries';
+import queries from '../queries';
 
-//For react-modal
-ReactModal.setAppElement('#root');
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    width: '50%',
-    border: '1px solid #28547a',
-    borderRadius: '4px'
-  }
-};
 
-function AddModal(props) {
-  const [showAddModal, setShowAddModal] = useState(props.isOpen);
+
+function Add(props) {
   const [addEmployee] = useMutation(queries.ADD_EMPLOYEE, {
     update(cache, {data: {addEmployee}}) {
       const {employees} = cache.readQuery({
@@ -50,20 +35,18 @@ function AddModal(props) {
 
   const {data} = useQuery(queries.GET_EMPLOYERS);
 
-  const handleCloseAddModal = () => {
-    setShowAddModal(true);
-    props.handleClose(false);
-  };
+  
 
   if (data) {
     var {employers} = data;
   }
   let body = null;
-  if (props.modal === 'addEmployee') {
+  if (props.type === 'employee') {
     let firstName;
     let lastName;
     let employerId;
     body = (
+        <div className='card'>
       <form
         className='form'
         id='add-employee'
@@ -76,12 +59,13 @@ function AddModal(props) {
               employerId: parseInt(employerId.value)
             }
           });
-          firstName.value = '';
-          lastName.value = '';
+        
           employerId.value = '1';
-          setShowAddModal(false);
+          document.getElementById("add-employee").reset()
           alert('Employee Added');
-          props.handleClose();
+          props.closeAddFormState()
+         
+          
         }}
       >
         <div className='form-group'>
@@ -138,11 +122,19 @@ function AddModal(props) {
         <button className='button add-button' type='submit'>
           Add Employee
         </button>
+        <button className='button cancel-button' onClick={()=>{
+            document.getElementById("add-employee").reset()
+            props.closeAddFormState()
+        }} >
+          Cancel
+        </button>
       </form>
+      </div>
     );
-  } else if (props.modal === 'addEmployer') {
+  } else if (props.type === 'employer') {
     let name;
     body = (
+        <div className='card'>
       <form
         className='form'
         id='add-employer'
@@ -153,10 +145,11 @@ function AddModal(props) {
               name: name.value
             }
           });
-          name.value = '';
-          setShowAddModal(false);
+          document.getElementById("add-employer").reset()
           alert('Employer Added');
-          props.handleClose();
+          props.closeAddFormState()
+          
+          
         }}
       >
         <div className='form-group'>
@@ -179,24 +172,23 @@ function AddModal(props) {
         <button className='button add-button' type='submit'>
           Add Employer
         </button>
+        <button className='button cancel-button' onClick={()=>{
+            document.getElementById("add-employer").reset()
+            props.closeAddFormState()
+        }} >
+          Cancel
+        </button>
       </form>
+      </div>
     );
   }
   return (
     <div>
-      <ReactModal
-        name='addModal'
-        isOpen={showAddModal}
-        contentLabel='Add Modal'
-        style={customStyles}
-      >
         {body}
-        <button className='button cancel-button' onClick={handleCloseAddModal}>
-          Cancel
-        </button>
-      </ReactModal>
     </div>
   );
 }
 
-export default AddModal;
+export default Add;
+
+

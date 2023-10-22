@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import './App.css';
-
-import AddModal from './modals/AddModal';
 import {useQuery} from '@apollo/client';
 import queries from '../queries';
+import Add from './Add';
 
 function Employers() {
-  const [showAddModal, setShowAddModal] = useState(false);
+    const [showAddForm, setShowAddForm] = useState(false)
+    const closeAddFormState = ()=>{
+        setShowAddForm(false)
+      }
   const {loading, error, data} = useQuery(
     queries.GET_EMPLOYERS_WITH_EMPLOYEES,
     {
@@ -14,22 +16,16 @@ function Employers() {
     }
   );
 
-  const handleCloseModals = () => {
-    setShowAddModal(false);
-  };
-
-  const handleOpenAddModal = () => {
-    setShowAddModal(true);
-  };
 
   if (data) {
     const {employers} = data;
 
     return (
       <div>
-        <button className='button' onClick={handleOpenAddModal}>
+        <button className='button' onClick={()=>setShowAddForm(!showAddForm)}>
           Create Employer
         </button>
+        {showAddForm && <Add type="employer" closeAddFormState={closeAddFormState}/>}
         <br />
         <br />
         <div>
@@ -57,15 +53,7 @@ function Employers() {
             );
           })}
         </div>
-        );
-        {/*Add Employer Modal */}
-        {showAddModal && (
-          <AddModal
-            isOpen={showAddModal}
-            handleClose={handleCloseModals}
-            modal='addEmployer'
-          />
-        )}
+        
       </div>
     );
   } else if (loading) {

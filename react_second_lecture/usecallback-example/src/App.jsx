@@ -5,10 +5,12 @@ import NoCallback from './NoCallback';
 function App() {
   return (
     <div className='App'>
-      Using useCallback
-      <Callback />
       Not using useCallback
       <NoCallback />
+      
+      Using useCallback
+      <Callback />
+      
     </div>
   );
 }

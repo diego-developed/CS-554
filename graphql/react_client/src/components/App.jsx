@@ -2,30 +2,17 @@ import React from 'react';
 import './App.css';
 import {
   NavLink,
-  BrowserRouter as Router,
   Route,
   Routes
 } from 'react-router-dom';
 import Home from './Home';
 import Employees from './Employees';
 import Employers from './Employers';
-import {
-  ApolloClient,
-  HttpLink,
-  InMemoryCache,
-  ApolloProvider
-} from '@apollo/client';
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: new HttpLink({
-    uri: 'http://localhost:4000'
-  })
-});
+
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <Router>
+    
         <div>
           <header className='App-header'>
             <h1 className='App-title'>
@@ -50,8 +37,8 @@ function App() {
             <Route path='/employers/' element={<Employers />} />
           </Routes>
         </div>
-      </Router>
-    </ApolloProvider>
+     
+  
   );
 }
 
