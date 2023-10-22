@@ -27,17 +27,17 @@ function DeleteEmployeeModal(props) {
   const [employee, setEmployee] = useState(props.deleteEmployee);
 
   const [removeEmployee] = useMutation(queries.DELETE_EMPLOYEE, {
-    update(cache, {data: {removeEmployee}}) {
-      const {employees} = cache.readQuery({
-        query: queries.GET_EMPLOYEES
+    update(cache) {
+      cache.modify({
+        fields: {
+          employees(existingEmployees, { readField }) {
+            return existingEmployees.filter(
+              empRef => employee._id !== readField('_id', empRef),
+            );
+          },
+        },
       });
-      cache.writeQuery({
-        query: queries.GET_EMPLOYEES,
-        data: {
-          employees: employees.filter((e) => e._id !== employee._id)
-        }
-      });
-    }
+    },
   });
 
   const handleCloseDeleteModal = () => {

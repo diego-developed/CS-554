@@ -16,7 +16,7 @@ function Add(props) {
       });
       cache.writeQuery({
         query: queries.GET_EMPLOYEES,
-        data: {employees: employees.concat([addEmployee])}
+        data: {employees: [...employees,addEmployee]}
       });
     }
   });
@@ -28,7 +28,7 @@ function Add(props) {
       });
       cache.writeQuery({
         query: queries.GET_EMPLOYERS_WITH_EMPLOYEES,
-        data: {employers: employers.concat([addEmployer])}
+        data: {employers: [...employers,addEmployer]}
       });
     }
   });
