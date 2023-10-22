@@ -7,16 +7,16 @@ import Landing from './Landing';
 import Navigation from './Navigation';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
-import {AuthProvider} from '../firebase/Auth'
+import {AuthProvider} from '../firebase/Auth';
 import PrivateRoute from './PrivateRoute';
 function App() {
   return (
     <AuthProvider>
-        <div className='App'>
-          <header className='App-header'>
-            <Navigation />
-          </header>
-          <Routes>
+      <div className='App'>
+        <header className='App-header card'>
+          <Navigation />
+        </header>
+        <Routes>
           <Route path='/' element={<Landing />} />
           <Route path='/home' element={<PrivateRoute />}>
             <Route path='/home' element={<Home />} />
@@ -27,9 +27,8 @@ function App() {
           <Route path='/signin' element={<SignIn />} />
           <Route path='/signup' element={<SignUp />} />
         </Routes>
-        </div>
-        </AuthProvider>
-        
+      </div>
+    </AuthProvider>
   );
 }
 

@@ -7,7 +7,9 @@ import {
   updatePassword,
   signInWithPopup,
   GoogleAuthProvider,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  EmailAuthProvider,
+  reauthenticateWithCredential
 } from 'firebase/auth';
 
 async function doCreateUserWithEmailAndPassword(email, password, displayName) {
@@ -18,6 +20,10 @@ async function doCreateUserWithEmailAndPassword(email, password, displayName) {
 
 async function doChangePassword(email, oldPassword, newPassword) {
   const auth = getAuth();
+  let credential = EmailAuthProvider.credential(email, oldPassword);
+  console.log(credential);
+  await reauthenticateWithCredential(auth.currentUser, credential);
+
   await updatePassword(auth.currentUser, newPassword);
   await doSignOut();
 }
@@ -27,7 +33,7 @@ async function doSignInWithEmailAndPassword(email, password) {
   await signInWithEmailAndPassword(auth, email, password);
 }
 
-async function doSocialSignIn(provider) {
+async function doSocialSignIn() {
   let auth = getAuth();
   let socialProvider = new GoogleAuthProvider();
   await signInWithPopup(auth, socialProvider);

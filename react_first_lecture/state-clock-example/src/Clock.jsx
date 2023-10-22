@@ -7,9 +7,9 @@ function Clock(props) {
   useEffect(() => {
     const timerID = setInterval(() => tick(), 1000);
 
-    const  tick = () => {
+    const tick = () => {
       setClock(new Date());
-      setCounter( (prevState)=> prevState + 1);
+      setCounter((prevState) => prevState + 1);
     };
 
     return () => {
@@ -17,7 +17,7 @@ function Clock(props) {
       clearInterval(timerID);
     };
   }, []);
-  
+
   return (
     <div className='App'>
       <h1>Counter: {counter}</h1>

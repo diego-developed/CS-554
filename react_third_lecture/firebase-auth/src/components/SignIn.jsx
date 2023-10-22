@@ -4,7 +4,7 @@ import {Navigate} from 'react-router-dom';
 import {AuthContext} from '../firebase/Auth';
 import {
   doSignInWithEmailAndPassword,
-  doPasswordReset,
+  doPasswordReset
 } from '../firebase/FirebaseFunctions';
 
 function SignIn() {
@@ -37,43 +37,50 @@ function SignIn() {
   }
   return (
     <div>
-      <h1>Log in</h1>
-      <form onSubmit={handleLogin}>
-        <div className='form-group'>
-          <label>
-            Email:
-            <input
-              className='form-control'
-              name='email'
-              id='email'
-              type='email'
-              placeholder='Email'
-              required
-            />
-          </label>
-        </div>
-        <div className='form-group'>
-          <label>
-            Password:
-            <input
-              className='form-control'
-              name='password'
-              type='password'
-              placeholder='Password'
-              autoComplete='off'
-              required
-            />
-          </label>
-        </div>
-        <button type='submit'>Log in</button>
+      <div className='card'>
+        <h1>Log-In</h1>
+        <form className='form' onSubmit={handleLogin}>
+          <div className='form-group'>
+            <label>
+              Email Address:
+              <br />
+              <input
+                name='email'
+                id='email'
+                type='email'
+                placeholder='Email'
+                required
+                autoFocus={true}
+              />
+            </label>
+          </div>
+          <br />
+          <div className='form-group'>
+            <label>
+              Password:
+              <br />
+              <input
+                name='password'
+                type='password'
+                placeholder='Password'
+                autoComplete='off'
+                required
+              />
+            </label>
+          </div>
 
-        <button className='forgotPassword' onClick={passwordReset}>
-          Forgot Password
-        </button>
-      </form>
+          <button className='button' type='submit'>
+            Log in
+          </button>
 
-      <br />
-      <SocialSignIn />
+          <button className='forgotPassword' onClick={passwordReset}>
+            Forgot Password
+          </button>
+        </form>
+
+        <br />
+        <SocialSignIn />
+      </div>
     </div>
   );
 }

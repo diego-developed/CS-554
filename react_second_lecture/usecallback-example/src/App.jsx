@@ -7,10 +7,8 @@ function App() {
     <div className='App'>
       Not using useCallback
       <NoCallback />
-      
       Using useCallback
       <Callback />
-      
     </div>
   );
 }

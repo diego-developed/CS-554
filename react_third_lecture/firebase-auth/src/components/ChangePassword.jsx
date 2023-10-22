@@ -80,7 +80,9 @@ function ChangePassword() {
             </label>
           </div>
 
-          <button type='submit'>Change Password</button>
+          <button className='button' type='submit'>
+            Change Password
+          </button>
         </form>
         <br />
       </div>

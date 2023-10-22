@@ -1,20 +1,20 @@
-import { useRef, useState } from "react";
+import {useRef, useState} from 'react';
 
 function DomElements() {
-  const [inputVal, setInputVal]= useState("")
+  const [inputVal, setInputVal] = useState('');
   const inputElement = useRef();
 
   const focusInput = () => {
     inputElement.current.focus();
   };
 
-  const inputChange = ()=>{
-    setInputVal(inputElement.current.value)
-  }
+  const inputChange = () => {
+    setInputVal(inputElement.current.value);
+  };
 
   return (
     <>
-      <input type="text" ref={inputElement} onChange={inputChange} />
+      <input type='text' ref={inputElement} onChange={inputChange} />
       <button onClick={focusInput}>Focus Input</button>
       <h2>Input Value:</h2>
       {inputVal}
@@ -22,6 +22,4 @@ function DomElements() {
   );
 }
 
-
-
-export default DomElements
+export default DomElements;

@@ -1,9 +1,8 @@
-import { useState, useEffect, useRef } from "react";
-
+import {useState, useEffect, useRef} from 'react';
 
 function TrackStateChanges() {
-  const [inputValue, setInputValue] = useState("");
-  const previousInputValue = useRef("");
+  const [inputValue, setInputValue] = useState('');
+  const previousInputValue = useRef('');
 
   useEffect(() => {
     previousInputValue.current = inputValue;
@@ -12,7 +11,7 @@ function TrackStateChanges() {
   return (
     <>
       <input
-        type="text"
+        type='text'
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
@@ -21,4 +20,4 @@ function TrackStateChanges() {
     </>
   );
 }
-export default TrackStateChanges
+export default TrackStateChanges;

@@ -4,7 +4,7 @@ import '../App.css';
 
 function Landing() {
   return (
-    <div>
+    <div className='card'>
       <h2>This is the Landing page</h2>
     </div>
   );

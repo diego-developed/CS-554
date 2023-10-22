@@ -1,6 +1,5 @@
-
 import './App.css';
-import { Route, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import Account from './Account.jsx';
 import ChangePassword from './ChangePassword.jsx';
 import Home from './Home.jsx';
@@ -11,11 +10,11 @@ import SignUp from './SignUp.jsx';
 
 function App() {
   return (
-      <div className='App'>
-        <header className='App-header'>
-          <Navigation />
-        </header>
-        <Routes>
+    <div className='App'>
+      <header className='App-header'>
+        <Navigation />
+      </header>
+      <Routes>
         <Route path='/' element={<Landing />} />
         <Route path='home' element={<Home />} />
         <Route path='account' element={<Account />} />
@@ -23,7 +22,7 @@ function App() {
         <Route path='signup' element={<SignUp />} />
         <Route path='changepassword' element={<ChangePassword />} />
       </Routes>
-      </div>
+    </div>
   );
 }
 

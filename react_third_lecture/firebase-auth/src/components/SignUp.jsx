@@ -30,25 +30,28 @@ function SignUp() {
   }
 
   return (
-    <div>
+    <div className='card'>
       <h1>Sign up</h1>
       {pwMatch && <h4 className='error'>{pwMatch}</h4>}
       <form onSubmit={handleSignUp}>
         <div className='form-group'>
           <label>
             Name:
+            <br />
             <input
               className='form-control'
               required
               name='displayName'
               type='text'
               placeholder='Name'
+              autoFocus={true}
             />
           </label>
         </div>
         <div className='form-group'>
           <label>
             Email:
+            <br />
             <input
               className='form-control'
               required
@@ -61,6 +64,7 @@ function SignUp() {
         <div className='form-group'>
           <label>
             Password:
+            <br />
             <input
               className='form-control'
               id='passwordOne'
@@ -75,6 +79,7 @@ function SignUp() {
         <div className='form-group'>
           <label>
             Confirm Password:
+            <br />
             <input
               className='form-control'
               name='passwordTwo'
@@ -85,7 +90,12 @@ function SignUp() {
             />
           </label>
         </div>
-        <button id='submitButton' name='submitButton' type='submit'>
+        <button
+          className='button'
+          id='submitButton'
+          name='submitButton'
+          type='submit'
+        >
           Sign Up
         </button>
       </form>

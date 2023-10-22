@@ -1,18 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import SearchShows from './SearchShows';
-import ShowListCard from './ShowListCard'
-import {
-  Card,
-  
-  Grid,
- 
-} from '@mui/material';
+import ShowListCard from './ShowListCard';
+import {Card, Grid} from '@mui/material';
 
 import '../App.css';
 
 const ShowList = () => {
- 
   const [loading, setLoading] = useState(true);
   const [searchData, setSearchData] = useState(undefined);
   const [showsData, setShowsData] = useState(undefined);
@@ -56,20 +50,19 @@ const ShowList = () => {
   const searchValue = async (value) => {
     setSearchTerm(value);
   };
-  
 
   if (searchTerm) {
     cardsData =
       searchData &&
       searchData.map((shows) => {
         let {show} = shows;
-        return <ShowListCard show ={show} key={show.id}/>;
+        return <ShowListCard show={show} key={show.id} />;
       });
   } else {
     cardsData =
       showsData &&
       showsData.map((show) => {
-        return <ShowListCard show ={show} key={show.id}/>;
+        return <ShowListCard show={show} key={show.id} />;
       });
   }
 
