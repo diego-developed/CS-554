@@ -169,10 +169,10 @@ function Add(props) {
 
         <br />
         <br />
-        <button className='button add-button' type='submit'>
+        <button className='button' type='submit'>
           Add Employer
         </button>
-        <button className='button cancel-button' onClick={()=>{
+        <button className='button' onClick={()=>{
             document.getElementById("add-employer").reset()
             props.closeAddFormState()
         }} >
