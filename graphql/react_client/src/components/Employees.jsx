@@ -2,15 +2,16 @@ import React, {useState} from 'react';
 import './App.css';
 import {useQuery} from '@apollo/client';
 import queries from '../queries';
-import Add from "./Add"
+import Add from './Add';
 import DeleteEmployeeModal from './DeleteEmployeeModal';
 import EditEmployeeModal from './EditEmployeeModal';
 function Employees() {
-  const [showAddForm, setShowAddForm] = useState(false)
+  const [showAddForm, setShowAddForm] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [editEmployee, setEditEmployee] = useState(null);
   const [deleteEmployee, setDeleteEmployee] = useState(null);
+
   const {loading, error, data} = useQuery(queries.GET_EMPLOYEES, {
     fetchPolicy: 'cache-and-network'
   });
@@ -23,9 +24,9 @@ function Employees() {
     setShowDeleteModal(true);
     setDeleteEmployee(employee);
   };
-  const closeAddFormState = ()=>{
-    setShowAddForm(false)
-  }
+  const closeAddFormState = () => {
+    setShowAddForm(false);
+  };
 
   const handleCloseModals = () => {
     setShowEditModal(false);
@@ -36,10 +37,12 @@ function Employees() {
     const {employees} = data;
     return (
       <div>
-        <button className='button' onClick={()=>setShowAddForm(!showAddForm)}>
+        <button className='button' onClick={() => setShowAddForm(!showAddForm)}>
           Create Employee
         </button>
-        {showAddForm && <Add type="employee" closeAddFormState={closeAddFormState}/>}
+        {showAddForm && (
+          <Add type='employee' closeAddFormState={closeAddFormState} />
+        )}
         <br />
         <br />
 
@@ -55,7 +58,7 @@ function Employees() {
                 <button
                   className='button'
                   onClick={() => {
-                    handleOpenEditModal(employee);;
+                    handleOpenEditModal(employee);
                   }}
                 >
                   Edit
@@ -73,7 +76,7 @@ function Employees() {
             </div>
           );
         })}
-{showEditModal && showEditModal && (
+        {showEditModal && (
           <EditEmployeeModal
             isOpen={showEditModal}
             employee={editEmployee}
@@ -81,7 +84,7 @@ function Employees() {
           />
         )}
 
-{showDeleteModal && showDeleteModal && (
+        {showDeleteModal && (
           <DeleteEmployeeModal
             isOpen={showDeleteModal}
             handleClose={handleCloseModals}

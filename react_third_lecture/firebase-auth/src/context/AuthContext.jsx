@@ -9,6 +9,7 @@ export const AuthProvider = ({children}) => {
   useEffect(() => {
     let myListener = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
+      console.log('onAuthStateChanged', user);
       setLoadingUser(false);
     });
     return () => {
@@ -19,7 +20,7 @@ export const AuthProvider = ({children}) => {
   if (loadingUser) {
     return (
       <div>
-        {/* <h1>Loading....Loading....Loading....Loading....Loading....</h1> */}
+        <h1>Loading....Loading....Loading....Loading....Loading....</h1>
       </div>
     );
   }

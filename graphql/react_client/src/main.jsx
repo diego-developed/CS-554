@@ -1,14 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './components/App'
-import './index.css'
-import { BrowserRouter } from 'react-router-dom'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './components/App';
+import './index.css';
+import {BrowserRouter} from 'react-router-dom';
 import {
   ApolloClient,
   HttpLink,
   InMemoryCache,
   ApolloProvider
 } from '@apollo/client';
+
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
@@ -20,5 +21,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </ApolloProvider>,
-)
+  </ApolloProvider>
+);

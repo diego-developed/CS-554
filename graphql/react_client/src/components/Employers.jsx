@@ -5,10 +5,10 @@ import queries from '../queries';
 import Add from './Add';
 
 function Employers() {
-    const [showAddForm, setShowAddForm] = useState(false)
-    const closeAddFormState = ()=>{
-        setShowAddForm(false)
-      }
+  const [showAddForm, setShowAddForm] = useState(false);
+  const closeAddFormState = () => {
+    setShowAddForm(false);
+  };
   const {loading, error, data} = useQuery(
     queries.GET_EMPLOYERS_WITH_EMPLOYEES,
     {
@@ -16,16 +16,17 @@ function Employers() {
     }
   );
 
-
   if (data) {
     const {employers} = data;
 
     return (
       <div>
-        <button className='button' onClick={()=>setShowAddForm(!showAddForm)}>
+        <button className='button' onClick={() => setShowAddForm(!showAddForm)}>
           Create Employer
         </button>
-        {showAddForm && <Add type="employer" closeAddFormState={closeAddFormState}/>}
+        {showAddForm && (
+          <Add type='employer' closeAddFormState={closeAddFormState} />
+        )}
         <br />
         <br />
         <div>
@@ -53,7 +54,6 @@ function Employers() {
             );
           })}
         </div>
-        
       </div>
     );
   } else if (loading) {

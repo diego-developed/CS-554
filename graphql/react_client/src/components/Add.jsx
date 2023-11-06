@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-
+import React from 'react';
 import './App.css';
 
 import {useQuery, useMutation} from '@apollo/client';
@@ -14,7 +13,7 @@ function Add(props) {
       });
       cache.writeQuery({
         query: queries.GET_EMPLOYEES,
-        data: {employees: [...employees,addEmployee]}
+        data: {employees: [...employees, addEmployee]}
       });
     }
   });
@@ -26,16 +25,16 @@ function Add(props) {
       });
       cache.writeQuery({
         query: queries.GET_EMPLOYERS_WITH_EMPLOYEES,
-        data: {employers: [...employers,addEmployer]}
+        data: {employers: [...employers, addEmployer]}
       });
     }
   });
 
   const onSubmitEmployee = (e) => {
     e.preventDefault();
-    let firstName = document.getElementById("firstName")
-    let lastName = document.getElementById("lastName")
-    let employerId = document.getElementById("employerId")
+    let firstName = document.getElementById('firstName');
+    let lastName = document.getElementById('lastName');
+    let employerId = document.getElementById('employerId');
     addEmployee({
       variables: {
         firstName: firstName.value,
@@ -43,32 +42,26 @@ function Add(props) {
         employerId: parseInt(employerId.value)
       }
     });
-  
+
     employerId.value = '1';
-    document.getElementById("add-employee").reset()
+    document.getElementById('add-employee').reset();
     alert('Employee Added');
-    props.closeAddFormState()
-   
-    
-  }
+    props.closeAddFormState();
+  };
 
   const onSubmitEmployer = (e) => {
     e.preventDefault();
-   let employer = document.getElementById("employerName")
+    let employer = document.getElementById('employerName');
     addEmployer({
       variables: {
         name: employer.value
       }
     });
-    document.getElementById("add-employer").reset()
+    document.getElementById('add-employer').reset();
     alert('Employer Added');
-    props.closeAddFormState()
-    
-    
-  }
+    props.closeAddFormState();
+  };
   const {data} = useQuery(queries.GET_EMPLOYERS);
-
-  
 
   if (data) {
     var {employers} = data;
@@ -76,113 +69,93 @@ function Add(props) {
   let body = null;
   if (props.type === 'employee') {
     body = (
-        <div className='card'>
-      <form
-        className='form'
-        id='add-employee'
-        onSubmit={onSubmitEmployee}
-      >
-        <div className='form-group'>
-          <label>
-            First Name:
-            <br />
-            <input
-              id='firstName'
-              required
-              autoFocus={true}
-            />
-          </label>
-        </div>
-        <br />
-        <div className='form-group'>
-          <label>
-            Last Name:
-            <br />
-            <input
-              id="lastName"
-              required
-            />
-          </label>
-        </div>
-        <br />
+      <div className='card'>
+        <form className='form' id='add-employee' onSubmit={onSubmitEmployee}>
+          <div className='form-group'>
+            <label>
+              First Name:
+              <br />
+              <input id='firstName' required autoFocus={true} />
+            </label>
+          </div>
+          <br />
+          <div className='form-group'>
+            <label>
+              Last Name:
+              <br />
+              <input id='lastName' required />
+            </label>
+          </div>
+          <br />
 
-        <div className='form-group'>
-          <label>
-            Employer:
-            <select
-              className='form-control'
-                id="employerId"
-            
-            >
-              {employers &&
-                employers.map((employer) => {
-                  return (
-                    <option key={employer._id} value={employer._id}>
-                      {employer.name}
-                    </option>
-                  );
-                })}
-            </select>
-          </label>
-        </div>
+          <div className='form-group'>
+            <label>
+              Employer:
+              <select className='form-control' id='employerId'>
+                {employers &&
+                  employers.map((employer) => {
+                    return (
+                      <option key={employer._id} value={employer._id}>
+                        {employer.name}
+                      </option>
+                    );
+                  })}
+              </select>
+            </label>
+          </div>
 
-        <br />
-        <br />
-        <button className='button add-button' type='submit'>
-          Add Employee
-        </button>
-        <button type="button" className='button cancel-button' onClick={()=>{
-            document.getElementById("add-employee").reset()
-            props.closeAddFormState()
-        }} >
-          Cancel
-        </button>
-      </form>
+          <br />
+          <br />
+          <button className='button add-button' type='submit'>
+            Add Employee
+          </button>
+          <button
+            type='button'
+            className='button cancel-button'
+            onClick={() => {
+              document.getElementById('add-employee').reset();
+              props.closeAddFormState();
+            }}
+          >
+            Cancel
+          </button>
+        </form>
       </div>
     );
   } else if (props.type === 'employer') {
     let name;
     body = (
-        <div className='card'>
-      <form
-        className='form'
-        id='add-employer'
-        onSubmit={onSubmitEmployer}
-      >
-        <div className='form-group'>
-          <label>
-            Employer Name:
-            <br />
-            <input id="employerName"
-              required
-              autoFocus={true}
-            />
-          </label>
-        </div>
-        <br />
+      <div className='card'>
+        <form className='form' id='add-employer' onSubmit={onSubmitEmployer}>
+          <div className='form-group'>
+            <label>
+              Employer Name:
+              <br />
+              <input id='employerName' required autoFocus={true} />
+            </label>
+          </div>
+          <br />
 
-        <br />
-        <br />
-        <button className='button' type='submit'>
-          Add Employer
-        </button>
-        <button type="button" className='button' onClick={()=>{
-            document.getElementById("add-employer").reset()
-            props.closeAddFormState()
-        }} >
-          Cancel
-        </button>
-      </form>
+          <br />
+          <br />
+          <button className='button' type='submit'>
+            Add Employer
+          </button>
+          <button
+            type='button'
+            className='button'
+            onClick={() => {
+              document.getElementById('add-employer').reset();
+              props.closeAddFormState();
+            }}
+          >
+            Cancel
+          </button>
+        </form>
       </div>
     );
   }
-  return (
-    <div>
-        {body}
-    </div>
-  );
+  return <div>{body}</div>;
 }
 
 export default Add;
-
-
