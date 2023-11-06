@@ -6,13 +6,13 @@ const intitalState = {
 const reducer = (state, action) => {
   const {type, payload} = action;
   switch (type) {
-    case 'increment':
+    case 'incrementFirstCounter':
       return {...state, firstCounter: state.firstCounter + payload.incBy};
-    case 'decrement':
+    case 'decrementFirstCounter':
       return {...state, firstCounter: state.firstCounter - payload.decBy};
-    case 'increment2':
+    case 'incrementSecondCounter':
       return {...state, secondCounter: state.secondCounter + payload.incBy};
-    case 'decrement2':
+    case 'decrementSecondCounter':
       return {...state, secondCounter: state.secondCounter - payload.decBy};
     case 'reset':
       return intitalState;
@@ -27,50 +27,66 @@ function StateObject() {
       <div>Count One: {count.firstCounter}</div>
 
       <button
-        onClick={() => dispatch({type: 'increment', payload: {incBy: 1}})}
+        onClick={() =>
+          dispatch({type: 'incrementFirstCounter', payload: {incBy: 1}})
+        }
       >
         Increment Counter One by 1
       </button>
       <br />
       <button
-        onClick={() => dispatch({type: 'decrement', payload: {decBy: 1}})}
+        onClick={() =>
+          dispatch({type: 'decrementFirstCounter', payload: {decBy: 1}})
+        }
       >
         Decrement Counter One by 1
       </button>
       <br />
       <button
-        onClick={() => dispatch({type: 'increment', payload: {incBy: 5}})}
+        onClick={() =>
+          dispatch({type: 'incrementFirstCounter', payload: {incBy: 5}})
+        }
       >
         Increment Counter One by 5
       </button>
       <br />
       <button
-        onClick={() => dispatch({type: 'decrement', payload: {decBy: 5}})}
+        onClick={() =>
+          dispatch({type: 'decrementFirstCounter', payload: {decBy: 5}})
+        }
       >
         Decrement Counter One by 5
       </button>
       <br />
       <div>Count Two: {count.secondCounter}</div>
       <button
-        onClick={() => dispatch({type: 'increment2', payload: {incBy: 1}})}
+        onClick={() =>
+          dispatch({type: 'incrementSecondCounter', payload: {incBy: 1}})
+        }
       >
         Increment Counter Two by 1
       </button>
       <br />
       <button
-        onClick={() => dispatch({type: 'decrement2', payload: {decBy: 1}})}
+        onClick={() =>
+          dispatch({type: 'decrementSecondCounter', payload: {decBy: 1}})
+        }
       >
         Decrement Counter Two by 1
       </button>
       <br />
       <button
-        onClick={() => dispatch({type: 'increment2', payload: {incBy: 5}})}
+        onClick={() =>
+          dispatch({type: 'incrementSecondCounter', payload: {incBy: 5}})
+        }
       >
         Increment Counter Two by 5
       </button>
       <br />
       <button
-        onClick={() => dispatch({type: 'decrement2', payload: {decBy: 5}})}
+        onClick={() =>
+          dispatch({type: 'decrementSecondCounter', payload: {decBy: 5}})
+        }
       >
         Decrement Counter Two by 5
       </button>
