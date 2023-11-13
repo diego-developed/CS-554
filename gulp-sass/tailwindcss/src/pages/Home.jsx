@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import getMarvelAPI from "./utils/getMarvelAPI";
-import Collection from "./components/Collection";
+import getMarvelAPI from "../utils/getMarvelAPI";
+import Collection from "../components/Collection";
 
-function App() {
+export default function Home() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -30,5 +30,3 @@ function App() {
     </main>
   );
 }
-
-export default App;
