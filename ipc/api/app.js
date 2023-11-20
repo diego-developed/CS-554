@@ -1,13 +1,12 @@
-const express = require('express');
+import express, {json} from 'express';
 const app = express();
-const bodyParser = require('body-parser');
-const redisConnection = require('./redis-connection');
-const nrpSender = require('./nrp-sender-shim');
+import redisConnection from './redis-connection.js';
+import {sendMessage} from './nrp-sender-shim.js';
 
-app.use(bodyParser.json());
+app.use(json());
 
 app.post('/send-message', async (req, res) => {
-  let response = await nrpSender.sendMessage({
+  let response = await sendMessage({
     redis: redisConnection,
     eventName: 'send-message',
     data: {
@@ -16,12 +15,12 @@ app.post('/send-message', async (req, res) => {
     expectsResponse: false
   });
 
-  res.json({sent: response});
+  res.json({sent: 'OK'});
 });
 
 app.post('/send-message-with-reply', async (req, res) => {
   try {
-    let response = await nrpSender.sendMessage({
+    let response = await sendMessage({
       redis: redisConnection,
       eventName: 'send-message-with-reply',
       data: {

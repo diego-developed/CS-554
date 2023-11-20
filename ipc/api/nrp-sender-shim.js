@@ -1,5 +1,5 @@
-const uuid = require('node-uuid');
-const NRP = require('node-redis-pubsub');
+import {v4} from 'uuid';
+import NRP from 'node-redis-pubsub';
 
 const nrpConfig = {
   port: 6379,
@@ -20,7 +20,7 @@ const sendMessage = (messageConfig = defaultMessageConfig) => {
   return new Promise((fulfill, reject) => {
     let settings = Object.assign({}, defaultMessageConfig, messageConfig);
 
-    let messageId = uuid.v4();
+    let messageId = v4();
     let killswitchTimeoutId = undefined;
     let redisConnection = settings.redis;
     let eventName = settings.eventName;
@@ -72,6 +72,4 @@ const sendMessage = (messageConfig = defaultMessageConfig) => {
   });
 };
 
-module.exports = {
-  sendMessage
-};
+export {sendMessage};

@@ -1,4 +1,4 @@
-const redisConnection = require('./redis-connection');
+import redisConnection from './redis-connection.js';
 
 redisConnection.emit('send-message', {
   message: 'Hello, world!'

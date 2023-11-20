@@ -1,4 +1,4 @@
-const redisConnection = require('./redis-connection');
+import redisConnection from './redis-connection.js';
 
 redisConnection.on('send-message', (data, channel) => {
   let message = data.message;

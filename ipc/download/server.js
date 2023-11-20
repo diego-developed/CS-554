@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const app = express();
-const redisConnection = require('./redis-connection');
+import redisConnection from './redis-connection.js';
 
 app.get('/compute-results', async (req, res) => {
   redisConnection.emit('computeResults', {message: 'NOWHERE IS SAFE'});
