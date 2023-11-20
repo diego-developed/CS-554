@@ -66,6 +66,7 @@ function App() {
               id='message'
               variant='outlined'
               label='Message'
+              autoFocus
             />
 
             <button>Send Message</button>
