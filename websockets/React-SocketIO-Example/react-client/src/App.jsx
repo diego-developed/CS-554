@@ -18,10 +18,11 @@ function App() {
 
   useEffect(() => {
     socketRef.current.on('message', ({name, message}) => {
-      console.log('The server has sent some data to all clients');
+      console.log('The server has broadcast message data to all clients');
       setChat([...chat, {name, message}]);
     });
     socketRef.current.on('user_join', function (data) {
+      console.log('The server has broadcast user join data to all clients');
       setChat([
         ...chat,
         {name: 'ChatBot', message: `${data} has joined the chat`}
@@ -35,6 +36,7 @@ function App() {
   }, [chat]);
 
   const userjoin = (name) => {
+    console.log('Going to send the user join event to the server');
     socketRef.current.emit('user_join', name);
   };
 
@@ -42,6 +44,8 @@ function App() {
     let msgEle = document.getElementById('message');
     console.log([msgEle.name], msgEle.value);
     setState({...state, [msgEle.name]: msgEle.value});
+    console.log('Going to send the message event to the server');
+
     socketRef.current.emit('message', {
       name: state.name,
       message: msgEle.value
