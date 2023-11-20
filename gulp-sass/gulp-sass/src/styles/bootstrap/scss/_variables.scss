@@ -300,7 +300,7 @@ $cyans: (
 
 // scss-docs-start theme-color-variables
 $primary: $blue !default;
-$secondary: $gray-600 !default;
+$secondary: red !default;
 $success: $green !default;
 $info: $cyan !default;
 $warning: $yellow !default;
@@ -1416,7 +1416,7 @@ $card-cap-bg: rgba(var(--#{$prefix}body-color-rgb), 0.03) !default;
 $card-cap-color: null !default;
 $card-height: null !default;
 $card-color: null !default;
-$card-bg: var(--#{$prefix}body-bg) !default;
+$card-bg: $patricks-green !default;
 $card-img-overlay-padding: $spacer !default;
 $card-group-margin: $grid-gutter-width * 0.5 !default;
 // scss-docs-end card-variables

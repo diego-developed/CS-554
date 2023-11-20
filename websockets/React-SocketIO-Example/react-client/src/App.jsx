@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import io from 'socket.io-client';
 import './App.css';
+import Chat from './Chat';
 
 function App() {
   const [state, setState] = useState({message: '', name: ''});
@@ -9,7 +10,7 @@ function App() {
   const socketRef = useRef();
 
   useEffect(() => {
-    socketRef.current = io('/');
+    socketRef.current = io('http://localhost:4000');
     return () => {
       socketRef.current.disconnect();
     };
@@ -51,35 +52,22 @@ function App() {
     msgEle.focus();
   };
 
-  const renderChat = () => {
-    console.log('In render chat');
-    return chat.map(({name, message}, index) => (
-      <div key={index}>
-        <h3>
-          {name}: <span>{message}</span>
-        </h3>
-      </div>
-    ));
-  };
-
   return (
     <div>
       {state.name && (
         <div className='card'>
           <div className='render-chat'>
             <h1>Chat Log</h1>
-            {renderChat()}
+            <Chat chat={chat} />
           </div>
-          <form onSubmit={onMessageSubmit}>
-            <h1>Messenger</h1>
-            <div>
-              <input
-                name='message'
-                id='message'
-                variant='outlined'
-                label='Message'
-              />
-            </div>
+          <form className='chatform' onSubmit={onMessageSubmit}>
+            <input
+              name='message'
+              id='message'
+              variant='outlined'
+              label='Message'
+            />
+
             <button>Send Message</button>
           </form>
         </div>
@@ -87,7 +75,7 @@ function App() {
 
       {!state.name && (
         <form
-          className='form'
+          className='usernameform'
           onSubmit={(e) => {
             console.log(document.getElementById('username_input').value);
             e.preventDefault();

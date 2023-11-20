@@ -1,6 +1,9 @@
-const app = require('express');
-const http = require('http').createServer(app);
-var io = require('socket.io')(http);
+import app from 'express';
+import {createServer} from 'http';
+import {Server} from 'socket.io'; //replaces (import socketIo from 'socket.io')
+
+const httpServer = createServer(app);
+const io = new Server(httpServer, {cors: {origin: '*'}});
 
 io.on('connection', (socket) => {
   console.log('new client connected', socket.id);
@@ -20,6 +23,6 @@ io.on('connection', (socket) => {
   });
 });
 
-http.listen(4000, () => {
+httpServer.listen(4000, () => {
   console.log(`listening on *:${4000}`);
 });
