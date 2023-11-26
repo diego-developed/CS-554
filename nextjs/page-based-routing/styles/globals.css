@@ -97,7 +97,7 @@ body {
 h1,
 h2,
 p {
-  color: #ccc;
+  color: #dedbdb;
   padding: 5px;
 }
 body {
@@ -109,7 +109,7 @@ a:hover {
 }
 
 a {
-  color: #ccc;
+  color: #dedbdb;
   text-decoration: none;
   margin-right: 15px;
   padding: 5px;
@@ -125,8 +125,8 @@ li.nav {
 }
 
 .layoutStyle {
-  margin: 20;
-  padding: 20;
+  margin: 20px;
+  padding: 20px;
   border: 1px solid #ddd;
 }
 
