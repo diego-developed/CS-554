@@ -19,7 +19,7 @@ export default function ShowCS() {
           setLoading(false);
         });
     }
-  }, [router.isReady]);
+  }, [router.isReady, router.query]);
 
   //this useEffect has an issue when you refresh the page or manually enter a show ID. the useEffect above fixes this
   // useEffect(() => {

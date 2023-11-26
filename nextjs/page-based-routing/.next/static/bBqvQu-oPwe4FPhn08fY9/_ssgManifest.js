@@ -1,1 +1,0 @@
-self.__SSG_MANIFEST=new Set(["\u002Fstatic-site-generation\u002Fshows","\u002Fstatic-site-generation\u002Fshows\u002F[id]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
