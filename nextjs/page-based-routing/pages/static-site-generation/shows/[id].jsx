@@ -32,6 +32,9 @@ export default function show({data}) {
         p::first-letter {
           font-size: 200%;
         }
+        p {
+          padding-bottom: 20px;
+        }
       `}</style>
     </>
   );
