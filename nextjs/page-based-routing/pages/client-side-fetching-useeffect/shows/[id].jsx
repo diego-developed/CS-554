@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import Head from 'next/head';
 import {useRouter} from 'next/router';
 import Image from 'next/image';
 import styles from '../../../styles/show.module.css';
@@ -36,6 +37,9 @@ export default function ShowCS() {
   return (
     <>
       <div>
+        <Head>
+          <title>{data.name}</title>
+        </Head>
         <h1>{data.name} </h1>
         <p className={styles.showSummary}>
           {data.summary

@@ -1,11 +1,1 @@
-{
-  "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/server-side-rendering-fetching/shows": "pages/server-side-rendering-fetching/shows.js",
-  "/client-side-fetching-useeffect/shows": "pages/client-side-fetching-useeffect/shows.js",
-  "/server-side-rendering-fetching/shows/[id]": "pages/server-side-rendering-fetching/shows/[id].js",
-  "/static-site-generation/shows": "pages/static-site-generation/shows.js",
-  "/client-side-fetching-useeffect/shows/[id]": "pages/client-side-fetching-useeffect/shows/[id].js",
-  "/static-site-generation/shows/[id]": "pages/static-site-generation/shows/[id].js"
-}
+{"/_app":"pages/_app.js","/about":"pages/about.html","/client-side-fetching-useeffect/shows/[id]":"pages/client-side-fetching-useeffect/shows/[id].html","/contact":"pages/contact.html","/":"pages/index.html","/_error":"pages/_error.js","/client-side-fetching-useeffect/shows":"pages/client-side-fetching-useeffect/shows.html","/server-side-rendering-fetching/shows":"pages/server-side-rendering-fetching/shows.js","/server-side-rendering-fetching/shows/[id]":"pages/server-side-rendering-fetching/shows/[id].js","/static-site-generation/shows":"pages/static-site-generation/shows.js","/static-site-generation/shows/[id]":"pages/static-site-generation/shows/[id].js","/_document":"pages/_document.js","/404":"pages/404.html"}

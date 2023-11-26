@@ -1,10 +1,14 @@
 import axios from 'axios';
 import Image from 'next/image';
 import styles from '../../../styles/show.module.css';
+import Head from 'next/head';
 export default function show({data}) {
   return (
     <>
       <div>
+        <Head>
+          <title>{data.name}</title>
+        </Head>
         <h1>{data.name} </h1>
         <p className={styles.showSummary}>
           {data.summary
@@ -27,9 +31,7 @@ export default function show({data}) {
 }
 
 export async function getServerSideProps(context) {
-  // console.log(context);
   const {id} = context.query;
-  console.log(id);
 
   const {data} = await axios.get('http://api.tvmaze.com/shows/' + id);
   console.log(`Fetched a show (getServerSideProps): ${data.name}`);

@@ -1,8 +1,12 @@
 import axios from 'axios';
 import Link from 'next/link';
+import Head from 'next/head';
 export default function shows({data}) {
   return (
     <>
+      <Head>
+        <title>TV Shows (SSG)</title>
+      </Head>
       <h1>Static Site Generation (SSG)</h1>
       <p>
         If a page uses Static Generation, the page HTML is generated at build

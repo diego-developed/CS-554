@@ -1,8 +1,12 @@
 import axios from 'axios';
 import Link from 'next/link';
+import Head from 'next/head';
 export default function shows({data}) {
   return (
     <>
+      <Head>
+        <title>TV Shows (SSR)</title>
+      </Head>
       <h1>Server-side Rendering (SSR)</h1>
       <p>
         If a page uses Server-side Rendering, the page HTML is generated on each
@@ -25,10 +29,6 @@ export default function shows({data}) {
 }
 
 export async function getServerSideProps(context) {
-  // console.log(context);
-  const {id} = context.query;
-  console.log(id);
-
   const {data} = await axios.get('http://api.tvmaze.com/shows');
   return {
     props: {data}

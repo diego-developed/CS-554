@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 export default function ShowsCS() {
   const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(true);
@@ -18,6 +19,9 @@ export default function ShowsCS() {
 
   return (
     <div>
+      <Head>
+        <title>TV Shows (CSF)</title>
+      </Head>
       <h1>Client-Side Fetching (CSF)</h1>
       <p>
         Client-side data fetching is useful when your page doesn't require SEO

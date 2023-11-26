@@ -1,10 +1,14 @@
 import axios from 'axios';
 import Image from 'next/image';
+import Head from 'next/head';
 import styles from '../../../styles/show.module.css';
 export default function show({data}) {
   return (
     <>
       <div>
+        <Head>
+          <title>{data.name}</title>
+        </Head>
         <h1>{data.name} </h1>
         <p>
           {data.summary
