@@ -1,11 +1,12 @@
 import axios from 'axios';
 import Image from 'next/image';
+import styles from '../../../styles/show.module.css';
 export default function show({data}) {
   return (
     <>
       <div>
         <h1>{data.name} </h1>
-        <p>
+        <p className={styles.showSummary}>
           {data.summary
             ? data.summary.replace(/(<([^>]+)>)/gi, '')
             : 'No Summary'}
@@ -21,12 +22,6 @@ export default function show({data}) {
           width={209}
         />
       </div>
-
-      <style jsx>{`
-        p::first-letter {
-          font-size: 200%;
-        }
-      `}</style>
     </>
   );
 }

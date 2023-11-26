@@ -1,20 +1,34 @@
 import {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
 import Image from 'next/image';
+import styles from '../../../styles/show.module.css';
 export default function ShowCS() {
   const router = useRouter();
   const {id} = router.query;
   const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(true);
-
   useEffect(() => {
-    fetch('http://api.tvmaze.com/shows/' + id)
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      });
-  }, [id]);
+    if (router.isReady) {
+      const {id} = router.query;
+      if (!id) return null;
+      fetch('http://api.tvmaze.com/shows/' + id)
+        .then((res) => res.json())
+        .then((data) => {
+          setData(data);
+          setLoading(false);
+        });
+    }
+  }, [router.isReady]);
+
+  //this useEffect has an issue when you refresh the page or manually enter a show ID. the useEffect above fixes this
+  // useEffect(() => {
+  //   fetch('http://api.tvmaze.com/shows/' + id)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setData(data);
+  //       setLoading(false);
+  //     });
+  // }, [id]);
 
   if (isLoading) return <p>Loading...</p>;
   if (!data) return <p>No show data</p>;
@@ -23,7 +37,7 @@ export default function ShowCS() {
     <>
       <div>
         <h1>{data.name} </h1>
-        <p>
+        <p className={styles.showSummary}>
           {data.summary
             ? data.summary.replace(/(<([^>]+)>)/gi, '')
             : 'No Summary'}
@@ -40,11 +54,7 @@ export default function ShowCS() {
         />
       </div>
 
-      <style jsx>{`
-        p::first-letter {
-          font-size: 200%;
-        }
-      `}</style>
+      <style jsx>{``}</style>
     </>
   );
 }

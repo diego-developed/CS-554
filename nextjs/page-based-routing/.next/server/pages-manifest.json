@@ -2,11 +2,10 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/static-site-generation/shows": "pages/static-site-generation/shows.js",
   "/server-side-rendering-fetching/shows": "pages/server-side-rendering-fetching/shows.js",
   "/client-side-fetching-useeffect/shows": "pages/client-side-fetching-useeffect/shows.js",
-  "/client-side-fetching-useeffect/shows/[id]": "pages/client-side-fetching-useeffect/shows/[id].js",
   "/server-side-rendering-fetching/shows/[id]": "pages/server-side-rendering-fetching/shows/[id].js",
+  "/static-site-generation/shows": "pages/static-site-generation/shows.js",
+  "/client-side-fetching-useeffect/shows/[id]": "pages/client-side-fetching-useeffect/shows/[id].js",
   "/static-site-generation/shows/[id]": "pages/static-site-generation/shows/[id].js"
 }
