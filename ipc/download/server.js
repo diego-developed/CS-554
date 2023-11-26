@@ -4,12 +4,12 @@ import redisConnection from './redis-connection.js';
 
 app.get('/compute-results', async (req, res) => {
   redisConnection.emit('computeResults', {message: 'NOWHERE IS SAFE'});
-  res.json({done: false, working: true});
+  return res.json({done: false, working: true});
 });
 
 app.get('/show-results', async (req, res) => {
   redisConnection.on('results-completed', (data, channel) => {
-    res.json({data});
+    return res.json({data});
   });
 
   redisConnection.emit('showResults', {message: 'Trust no one'});

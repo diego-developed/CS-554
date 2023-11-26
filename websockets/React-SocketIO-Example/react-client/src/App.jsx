@@ -22,7 +22,7 @@ function App() {
       setChat([...chat, {name, message}]);
     });
     socketRef.current.on('user_join', function (data) {
-      console.log('The server has broadcast user join data to all clients');
+      console.log('The server has broadcast user join event to all clients');
       setChat([
         ...chat,
         {name: 'ChatBot', message: `${data} has joined the chat`}
@@ -45,7 +45,6 @@ function App() {
     console.log([msgEle.name], msgEle.value);
     setState({...state, [msgEle.name]: msgEle.value});
     console.log('Going to send the message event to the server');
-
     socketRef.current.emit('message', {
       name: state.name,
       message: msgEle.value

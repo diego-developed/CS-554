@@ -3,7 +3,7 @@ const app = express();
 import redisConnection from './redis-connection.js';
 import {sendMessage} from './nrp-sender-shim.js';
 
-app.use(json());
+app.use(express.json());
 
 app.post('/send-message', async (req, res) => {
   let response = await sendMessage({
