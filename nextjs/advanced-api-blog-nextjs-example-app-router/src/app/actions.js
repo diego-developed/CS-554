@@ -29,9 +29,9 @@ export async function createPost(prevState, formData) {
   }
 
   try {
-    posterId = validation.checkString(posterId, 'Poster ID');
+    posterId = validation.checkId(posterId, 'Poster ID');
   } catch (e) {
-    errors.push(e);
+    errors.push('Error: You Must select a user who posted from the dropdown!');
   }
 
   if (tags) {

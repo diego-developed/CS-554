@@ -59,7 +59,7 @@ export default function AddPostForm() {
         <label className={styles.myLabel}>
           Poster:
           <select className={styles.myInput} name='posterId'>
-            <option>Select a user....</option>
+            <option value={false}>Select a user....</option>
             {users &&
               users.map((user) => {
                 return (
