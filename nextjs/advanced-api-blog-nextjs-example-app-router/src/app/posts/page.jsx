@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import styles from './posts.module.css';
 import {postData} from '@/data/index.js';
+
+export const metadata = {
+  title: 'Posts'
+};
 export const dynamic = 'force-dynamic';
 export default async function Posts() {
   try {

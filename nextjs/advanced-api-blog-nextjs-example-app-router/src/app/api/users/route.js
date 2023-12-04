@@ -11,26 +11,39 @@ export async function GET(req) {
 }
 
 export async function POST(req) {
-  let reqBody = await req.json();
-
-  if (!reqBody || Object.keys(reqBody).length === 0) {
+  if (!req.body.stream) {
     return NextResponse.json(
       {error: 'There are no fields in the request body'},
       {status: 400}
     );
-  }
+  } else {
+    let reqBody = await req.json();
 
-  try {
-    reqBody.firstName = validation.checkString(reqBody.firstName, 'First Name');
-    reqBody.lastName = validation.checkString(reqBody.lastName, 'Last Name');
-  } catch (e) {
-    return NextResponse.json({error: e}, {status: 400});
-  }
+    if (!reqBody || Object.keys(reqBody).length === 0) {
+      return NextResponse.json(
+        {error: 'There are no fields in the request body'},
+        {status: 400}
+      );
+    }
 
-  try {
-    const newUser = await userData.addUser(reqBody.firstName, reqBody.lastName);
-    return NextResponse.json(newUser, {status: 200});
-  } catch (e) {
-    return NextResponse.json({error: e}, {status: 500});
+    try {
+      reqBody.firstName = validation.checkString(
+        reqBody.firstName,
+        'First Name'
+      );
+      reqBody.lastName = validation.checkString(reqBody.lastName, 'Last Name');
+    } catch (e) {
+      return NextResponse.json({error: e}, {status: 400});
+    }
+
+    try {
+      const newUser = await userData.addUser(
+        reqBody.firstName,
+        reqBody.lastName
+      );
+      return NextResponse.json(newUser, {status: 200});
+    } catch (e) {
+      return NextResponse.json({error: e}, {status: 500});
+    }
   }
 }

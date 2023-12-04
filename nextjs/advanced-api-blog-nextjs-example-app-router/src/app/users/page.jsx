@@ -2,6 +2,9 @@ import Link from 'next/link';
 import styles from './users.module.css';
 import {userData} from '@/data/index.js';
 export const dynamic = 'force-dynamic';
+export const metadata = {
+  title: 'Users'
+};
 export default async function Posts() {
   try {
     const userList = await getData();
