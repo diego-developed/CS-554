@@ -26,24 +26,24 @@ export default function AddUserForm() {
           })}
         </ul>
       )}
-
       <div className='form-group'>
         <label className={styles.myLabel}>
-          First Name:{' '}
+          First Name:
           <input className={styles.myInput} name='firstName' type='text' />
         </label>
+        <br />
       </div>
-
-      <br />
       <div className='form-group'>
         <label className={styles.myLabel}>
-          Last Name:{' '}
+          Last Name:
           <input className={styles.myInput} name='lastName' type='text' />
         </label>
       </div>
-      <button className={styles.myButton} type='submit'>
-        Add User
-      </button>
+      <div className='form-group'>
+        <button className={styles.myButton} type='submit'>
+          Add User
+        </button>
+      </div>
     </form>
   );
 }

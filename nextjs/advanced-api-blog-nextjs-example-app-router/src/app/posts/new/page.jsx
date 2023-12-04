@@ -11,7 +11,6 @@ export default function AddPostForm() {
   const [state, formAction] = useFormState(createPost, initialState);
 
   const [users, setusers] = useState(undefined);
-  console.log('state', state);
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('/api/users');
@@ -43,7 +42,7 @@ export default function AddPostForm() {
 
       <div className='form-group'>
         <label className={styles.myLabel}>
-          Post Title:{' '}
+          Post Title:
           <input className={styles.myInput} name='title' type='text' />
         </label>
       </div>
@@ -58,8 +57,9 @@ export default function AddPostForm() {
       <br />
       <div className='form-group'>
         <label className={styles.myLabel}>
-          Poster:{' '}
+          Poster:
           <select className={styles.myInput} name='posterId'>
+            <option>Select a user....</option>
             {users &&
               users.map((user) => {
                 return (
@@ -75,14 +75,16 @@ export default function AddPostForm() {
       <br />
       <div className='form-group'>
         <label className={styles.myLabel}>
-          Tags <br />
-          (Optional, multiple tags separated by comma):
+          Tags:
           <input className={styles.myInput} name='tags' type='text' />
         </label>
+        <cite>(Optional, separate multiple tags with a comma):</cite>
       </div>
-      <button className={styles.myButton} type='submit'>
-        Add Post
-      </button>
+      <div className='form-group'>
+        <button className={styles.myButton} type='submit'>
+          Add Post
+        </button>
+      </div>
     </form>
   );
 }
