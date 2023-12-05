@@ -11,13 +11,9 @@ export async function GET(req) {
 }
 
 export async function POST(req) {
-  if (!req.body.stream) {
-    return NextResponse.json(
-      {error: 'There are no fields in the request body'},
-      {status: 400}
-    );
-  } else {
-    let reqBody = await req.json();
+  let reqBody = null;
+  try {
+    reqBody = await req.json();
 
     if (!reqBody || Object.keys(reqBody).length === 0) {
       return NextResponse.json(
@@ -45,5 +41,10 @@ export async function POST(req) {
     } catch (e) {
       return NextResponse.json({error: e}, {status: 500});
     }
+  } catch (e) {
+    return NextResponse.json(
+      {error: 'There is no request body'},
+      {status: 400}
+    );
   }
 }

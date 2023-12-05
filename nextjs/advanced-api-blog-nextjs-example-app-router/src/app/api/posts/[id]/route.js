@@ -18,68 +18,84 @@ export async function GET(req, {params}) {
 }
 
 export async function PUT(req, {params}) {
-  let reqBody = await req.json();
-
-  if (!reqBody || Object.keys(reqBody).length === 0) {
-    return NextResponse.json(
-      {error: 'There are no fields in the request body'},
-      {status: 400}
-    );
-  }
-  //check all the inputs that will return 400 if they fail
+  let reqBody = null;
   try {
-    params.id = validation.checkId(params.id, 'ID url param');
-    reqBody.title = validation.checkString(reqBody.title, 'Title');
-    reqBody.body = validation.checkString(reqBody.body, 'Body');
-    reqBody.posterId = validation.checkId(reqBody.posterId, 'Poster ID');
-    if (reqBody.tags) {
-      if (!Array.isArray(reqBody.tags)) {
-        reqBody.tags = [];
-      } else {
-        reqBody.tags = validation.checkStringArray(reqBody.tags, 'Tags');
+    reqBody = await req.json();
+
+    if (!reqBody || Object.keys(reqBody).length === 0) {
+      return NextResponse.json(
+        {error: 'There are no fields in the request body'},
+        {status: 400}
+      );
+    }
+    //check all the inputs that will return 400 if they fail
+    try {
+      params.id = validation.checkId(params.id, 'ID url param');
+      reqBody.title = validation.checkString(reqBody.title, 'Title');
+      reqBody.body = validation.checkString(reqBody.body, 'Body');
+      reqBody.posterId = validation.checkId(reqBody.posterId, 'Poster ID');
+      if (reqBody.tags) {
+        if (!Array.isArray(reqBody.tags)) {
+          reqBody.tags = [];
+        } else {
+          reqBody.tags = validation.checkStringArray(reqBody.tags, 'Tags');
+        }
       }
+    } catch (e) {
+      return NextResponse.json({error: e}, {status: 400});
+    }
+
+    try {
+      const updatedPost = await postData.updatePostPut(params.id, reqBody);
+      return NextResponse.json(updatedPost, {status: 200});
+    } catch (e) {
+      return NextResponse.json({error: e}, {status: 404});
     }
   } catch (e) {
-    return NextResponse.json({error: e}, {status: 400});
-  }
-
-  try {
-    const updatedPost = await postData.updatePostPut(params.id, reqBody);
-    return NextResponse.json(updatedPost, {status: 200});
-  } catch (e) {
-    return NextResponse.json({error: e}, {status: 404});
+    return NextResponse.json(
+      {error: 'There is no request body'},
+      {status: 400}
+    );
   }
 }
 
 export async function PATCH(req, {params}) {
-  let reqBody = await req.json();
+  let reqBody = null;
+  try {
+    let reqBody = await req.json();
 
-  if (!reqBody || Object.keys(reqBody).length === 0) {
+    if (!reqBody || Object.keys(reqBody).length === 0) {
+      return NextResponse.json(
+        {error: 'There are no fields in the request body'},
+        {status: 400}
+      );
+    }
+    //check the inputs that will return 400 is fail
+    try {
+      params.id = validation.checkId(params.id, 'Post ID');
+      if (reqBody.title)
+        reqBody.title = validation.checkString(reqBody.title, 'Title');
+      if (reqBody.body)
+        reqBody.body = validation.checkString(reqBody.body, 'Body');
+      if (reqBody.posterId)
+        reqBody.posterId = validation.checkId(reqBody.posterId, 'Poster ID');
+      if (reqBody.tags)
+        reqBody.tags = validation.checkStringArray(reqBody.tags, 'Tags');
+    } catch (e) {
+      return NextResponse.json({error: e}, {status: 400});
+    }
+
+    try {
+      const updatedPost = await postData.updatePostPatch(params.id, reqBody);
+      return NextResponse.json(updatedPost, {status: 200});
+    } catch (e) {
+      return NextResponse.json({error: e}, {status: 404});
+    }
+  } catch (e) {
     return NextResponse.json(
-      {error: 'There are no fields in the request body'},
+      {error: 'There is no request body'},
       {status: 400}
     );
-  }
-  //check the inputs that will return 400 is fail
-  try {
-    params.id = validation.checkId(params.id, 'Post ID');
-    if (reqBody.title)
-      reqBody.title = validation.checkString(reqBody.title, 'Title');
-    if (reqBody.body)
-      reqBody.body = validation.checkString(reqBody.body, 'Body');
-    if (reqBody.posterId)
-      reqBody.posterId = validation.checkId(reqBody.posterId, 'Poster ID');
-    if (reqBody.tags)
-      reqBody.tags = validation.checkStringArray(reqBody.tags, 'Tags');
-  } catch (e) {
-    return NextResponse.json({error: e}, {status: 400});
-  }
-
-  try {
-    const updatedPost = await postData.updatePostPatch(params.id, reqBody);
-    return NextResponse.json(updatedPost, {status: 200});
-  } catch (e) {
-    return NextResponse.json({error: e}, {status: 404});
   }
 }
 

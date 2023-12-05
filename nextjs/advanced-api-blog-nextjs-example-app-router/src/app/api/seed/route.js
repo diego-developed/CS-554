@@ -3,6 +3,7 @@ import {NextResponse} from 'next/server';
 import {dbConnection, closeConnection} from '@/config/mongoConnection.js';
 export const dynamic = 'force-dynamic';
 export async function GET(req) {
+  //  console.log(req.url);
   const db = await dbConnection();
   await db.dropDatabase();
   const patrick = await userData.addUser('Patrick', 'Hill');

@@ -2,6 +2,7 @@
 import validation from '@/data/validation';
 import {redirect} from 'next/navigation';
 import {postData, userData} from '@/data/index.js';
+import {revalidatePath} from 'next/cache';
 
 export async function createPost(prevState, formData) {
   let title,
@@ -50,11 +51,13 @@ export async function createPost(prevState, formData) {
       let newPost = await postData.addPost(title, body, posterId, tags);
       id = newPost._id.toString();
       success = true;
+
       //redirect(`/posts/${id}`); // Navigate to new route
     } catch (e) {
       return {message: e};
     } finally {
       if (success) {
+        revalidatePath('/posts');
         redirect(`/posts/${id}`); // Navigate to new route
       }
     }
@@ -94,6 +97,7 @@ export async function createUser(prevState, formData) {
       return {message: e};
     } finally {
       if (success) {
+        revalidatePath('/users');
         redirect(`/users/${id}`); // Navigate to new route
       }
     }

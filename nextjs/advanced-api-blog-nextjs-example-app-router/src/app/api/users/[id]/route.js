@@ -18,66 +18,89 @@ export async function GET(req, {params}) {
 }
 
 export async function PUT(req, {params}) {
-  let reqBody = await req.json();
-
-  if (!reqBody || Object.keys(reqBody).length === 0) {
-    return NextResponse.json(
-      {error: 'There are no fields in the request body'},
-      {status: 400}
-    );
-  }
-  //check all the inputs that will return 400 if they fail
+  let reqBody = null;
   try {
-    params.id = validation.checkId(params.id);
-    reqBody.firstName = validation.checkString(reqBody.firstName, 'First Name');
-    reqBody.lastName = validation.checkString(reqBody.lastName, 'Last Name');
-  } catch (e) {
-    return NextResponse.json({error: e}, {status: 400});
-  }
+    reqBody = await req.json();
 
-  try {
-    const updatedUser = await userData.updateUserPut(
-      params.id,
-      reqBody.firstName,
-      reqBody.lastName
-    );
-    return NextResponse.json(updatedUser, {status: 200});
-  } catch (e) {
-    return NextResponse.json({error: e}, {status: 404});
-  }
-}
-
-export async function PATCH(req, {params}) {
-  let reqBody = await req.json();
-
-  if (!reqBody || Object.keys(reqBody).length === 0) {
-    return NextResponse.json(
-      {error: 'There are no fields in the request body'},
-      {status: 400}
-    );
-  }
-  //check the inputs that will return 400 is fail
-  try {
-    params.id = validation.checkId(params.id);
-    if (reqBody.firstName) {
+    if (!reqBody || Object.keys(reqBody).length === 0) {
+      return NextResponse.json(
+        {error: 'There are no fields in the request body'},
+        {status: 400}
+      );
+    }
+    //check all the inputs that will return 400 if they fail
+    try {
+      params.id = validation.checkId(params.id);
       reqBody.firstName = validation.checkString(
         reqBody.firstName,
         'First Name'
       );
+      reqBody.lastName = validation.checkString(reqBody.lastName, 'Last Name');
+    } catch (e) {
+      return NextResponse.json({error: e}, {status: 400});
     }
 
-    if (reqBody.lastName) {
-      reqBody.lastName = validation.checkString(reqBody.lastName, 'Last Name');
+    try {
+      const updatedUser = await userData.updateUserPut(
+        params.id,
+        reqBody.firstName,
+        reqBody.lastName
+      );
+      return NextResponse.json(updatedUser, {status: 200});
+    } catch (e) {
+      return NextResponse.json({error: e}, {status: 404});
     }
   } catch (e) {
-    return NextResponse.json({error: e}, {status: 400});
+    return NextResponse.json(
+      {error: 'There is no request body'},
+      {status: 400}
+    );
   }
+}
+
+export async function PATCH(req, {params}) {
+  let reqBody = null;
 
   try {
-    const updatedUser = await userData.updateUserPatch(params.id, reqBody);
-    return NextResponse.json(updatedUser, {status: 200});
+    reqBody = await req.json();
+
+    if (!reqBody || Object.keys(reqBody).length === 0) {
+      return NextResponse.json(
+        {error: 'There are no fields in the request body'},
+        {status: 400}
+      );
+    }
+    //check the inputs that will return 400 is fail
+    try {
+      params.id = validation.checkId(params.id);
+      if (reqBody.firstName) {
+        reqBody.firstName = validation.checkString(
+          reqBody.firstName,
+          'First Name'
+        );
+      }
+
+      if (reqBody.lastName) {
+        reqBody.lastName = validation.checkString(
+          reqBody.lastName,
+          'Last Name'
+        );
+      }
+    } catch (e) {
+      return NextResponse.json({error: e}, {status: 400});
+    }
+
+    try {
+      const updatedUser = await userData.updateUserPatch(params.id, reqBody);
+      return NextResponse.json(updatedUser, {status: 200});
+    } catch (e) {
+      return NextResponse.json({error: e}, {status: 404});
+    }
   } catch (e) {
-    return NextResponse.json({error: e}, {status: 404});
+    return NextResponse.json(
+      {error: 'There is no request body'},
+      {status: 400}
+    );
   }
 }
 
