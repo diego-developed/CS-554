@@ -21,7 +21,6 @@ const exportedMethods = {
     tag = validation.checkString(tag, 'Tag');
     const postCollection = await posts();
     let postList = await postCollection.find({tags: tag}).toArray();
-    console.log(tag);
     if (postList.length === 0) throw `Error: No posts with tag ${tag}`;
     return postList;
   },
@@ -31,8 +30,6 @@ const exportedMethods = {
     let postList = await postCollection
       .find({'poster.id': new ObjectId(userId)})
       .toArray();
-    console.log(userId);
-    //if (postList.length === 0) throw `Error: No posts with tag ${tag}`;
     return postList;
   },
   async addPost(title, body, posterId, tags) {

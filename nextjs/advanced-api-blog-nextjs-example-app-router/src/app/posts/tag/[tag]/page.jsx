@@ -26,14 +26,12 @@ export default async function PostByTag({params}) {
       </div>
     );
   } catch (e) {
-    console.log(e);
     return <div>{e}</div>;
   }
 
   async function getData(tag) {
     tag = await validation.checkString(tag, 'Tag URL Param');
     const postList = await postData.getPostsByTag(tag);
-    console.log(postList);
     return postList;
   }
 }

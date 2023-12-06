@@ -25,7 +25,6 @@ export default async function Posts() {
       </div>
     );
   } catch (e) {
-    console.log(e);
     return <div>{e}</div>;
   }
 }

@@ -16,7 +16,6 @@ export default function AddPostForm() {
       const response = await fetch('/api/users');
       const data = await response.json();
       let {userList} = data;
-      console.log(userList);
       setusers(userList);
     }
     fetchData();

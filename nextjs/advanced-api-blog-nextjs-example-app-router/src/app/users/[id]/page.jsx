@@ -1,11 +1,11 @@
 import {userData, postData} from '@/data/index.js';
 import validation from '@/data/validation';
 import Link from 'next/link';
+import styles from './userdetails.module.css';
 export default async function UserById({params}) {
   try {
     const data = await getData(params.id);
     const postData = await getPostData(params.id);
-    console.log('PostData', postData);
     return (
       <div>
         <h1>
@@ -21,7 +21,10 @@ export default async function UserById({params}) {
                 postData.map((post) => {
                   return (
                     <li key={post._id.toString()}>
-                      <Link href={`/posts/${post._id.toString()}`}>
+                      <Link
+                        className={styles.userPostLi}
+                        href={`/posts/${post._id.toString()}`}
+                      >
                         {post.title}
                       </Link>
                     </li>
@@ -35,7 +38,6 @@ export default async function UserById({params}) {
       </div>
     );
   } catch (e) {
-    console.log(e);
     return <div>{e}</div>;
   }
 

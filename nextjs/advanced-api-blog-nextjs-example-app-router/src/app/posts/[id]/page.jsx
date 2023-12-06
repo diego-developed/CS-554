@@ -1,6 +1,7 @@
 import {postData} from '@/data/index.js';
 import validation from '@/data/validation';
 import Link from 'next/link';
+import styles from './postdetails.module.css';
 export default async function PostById({params}) {
   try {
     const data = await getData(params.id);
@@ -10,13 +11,18 @@ export default async function PostById({params}) {
         <p>{data.body}</p>
         {data.tags.length > 0 ? (
           <div>
-            <h2>Tags:</h2>
+            <h3>Tags:</h3>
             <ul>
               {data.tags &&
                 data.tags.map((tag) => {
                   return (
                     <li key={tag}>
-                      <Link href={`/posts/tag/${tag}`}>{tag}</Link>
+                      <Link
+                        className={styles.userPostLi}
+                        href={`/posts/tag/${tag}`}
+                      >
+                        {tag}
+                      </Link>
                     </li>
                   );
                 })}
@@ -37,14 +43,12 @@ export default async function PostById({params}) {
       </div>
     );
   } catch (e) {
-    console.log(e);
     return <div>{e}</div>;
   }
 
   async function getData(id) {
     id = await validation.checkId(id, 'ID URL Param');
     const post = await postData.getPostById(id);
-    console.log(post);
     return post;
   }
 }
