@@ -1,6 +1,7 @@
 import {userData} from '@/data/index.js';
 import {NextResponse} from 'next/server';
 import validation from '@/data/validation';
+import {revalidatePath} from 'next/cache';
 export async function GET(req) {
   try {
     const userList = await userData.getAllUsers();
@@ -37,6 +38,7 @@ export async function POST(req) {
         reqBody.firstName,
         reqBody.lastName
       );
+      revalidatePath('/users');
       return NextResponse.json(newUser, {status: 200});
     } catch (e) {
       return NextResponse.json({error: e}, {status: 500});

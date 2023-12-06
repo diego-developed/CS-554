@@ -1,7 +1,7 @@
 import {postData} from '@/data/index.js';
 import {NextResponse} from 'next/server';
 import validation from '@/data/validation';
-
+import {revalidatePath} from 'next/cache';
 export async function GET(req) {
   try {
     const postList = await postData.getAllPosts();
@@ -35,6 +35,7 @@ export async function POST(req) {
     try {
       const {title, body, tags, posterId} = reqBody;
       const newPost = await postData.addPost(title, body, posterId, tags);
+      revalidatePath('/posts');
       return NextResponse.json(newPost, {status: 200});
     } catch (e) {
       return NextResponse.json({error: e}, {status: 500});

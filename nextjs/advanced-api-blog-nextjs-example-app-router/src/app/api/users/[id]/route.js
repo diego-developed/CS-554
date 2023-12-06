@@ -1,7 +1,7 @@
 import {userData} from '@/data/index.js';
 import validation from '@/data/validation';
 import {NextResponse} from 'next/server';
-
+import {revalidatePath} from 'next/cache';
 export async function GET(req, {params}) {
   try {
     params.id = validation.checkId(params.id, 'ID URL Param');
@@ -46,6 +46,7 @@ export async function PUT(req, {params}) {
         reqBody.firstName,
         reqBody.lastName
       );
+      revalidatePath('/users');
       return NextResponse.json(updatedUser, {status: 200});
     } catch (e) {
       return NextResponse.json({error: e}, {status: 404});
@@ -92,6 +93,7 @@ export async function PATCH(req, {params}) {
 
     try {
       const updatedUser = await userData.updateUserPatch(params.id, reqBody);
+      revalidatePath('/users');
       return NextResponse.json(updatedUser, {status: 200});
     } catch (e) {
       return NextResponse.json({error: e}, {status: 404});
@@ -114,6 +116,7 @@ export async function DELETE(req, {params}) {
   //try to delete post
   try {
     let deletedUser = await userData.removeUser(params.id);
+    revalidatePath('/users');
     return NextResponse.json(deletedUser, {status: 200});
   } catch (e) {
     return NextResponse.json({error: e}, {status: 404});

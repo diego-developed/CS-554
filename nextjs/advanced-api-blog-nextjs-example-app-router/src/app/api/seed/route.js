@@ -1,6 +1,7 @@
 import {userData, postData} from '@/data/index.js';
 import {NextResponse} from 'next/server';
 import {dbConnection, closeConnection} from '@/config/mongoConnection.js';
+import {revalidatePath} from 'next/cache';
 export const dynamic = 'force-dynamic';
 export async function GET(req) {
   //  console.log(req.url);
@@ -43,5 +44,7 @@ export async function GET(req) {
   );
 
   console.log('Done seeding database');
+  revalidatePath('/posts');
+  revalidatePath('/users');
   return NextResponse.json({done: true}, {status: 200});
 }

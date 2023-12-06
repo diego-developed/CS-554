@@ -1,7 +1,7 @@
 import {postData} from '@/data/index.js';
 import validation from '@/data/validation';
 import {NextResponse} from 'next/server';
-
+import {revalidatePath} from 'next/cache';
 export async function GET(req, {params}) {
   try {
     params.id = validation.checkId(params.id, 'ID URL Param');
@@ -47,6 +47,7 @@ export async function PUT(req, {params}) {
 
     try {
       const updatedPost = await postData.updatePostPut(params.id, reqBody);
+      revalidatePath('/posts');
       return NextResponse.json(updatedPost, {status: 200});
     } catch (e) {
       return NextResponse.json({error: e}, {status: 404});
@@ -87,6 +88,7 @@ export async function PATCH(req, {params}) {
 
     try {
       const updatedPost = await postData.updatePostPatch(params.id, reqBody);
+      revalidatePath('/posts');
       return NextResponse.json(updatedPost, {status: 200});
     } catch (e) {
       return NextResponse.json({error: e}, {status: 404});
@@ -109,6 +111,7 @@ export async function DELETE(req, {params}) {
   //try to delete post
   try {
     let deletedPost = await postData.removePost(params.id);
+    revalidatePath('/posts');
     return NextResponse.json(deletedPost, {status: 200});
   } catch (e) {
     return NextResponse.json({error: e}, {status: 404});
