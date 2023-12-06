@@ -11,6 +11,7 @@ export default async function PostById({params}) {
         <p>{data.body}</p>
         {data.tags.length > 0 ? (
           <div>
+            <br />
             <h3>Tags:</h3>
             <ul>
               {data.tags &&
@@ -34,7 +35,10 @@ export default async function PostById({params}) {
         <br />
         <br />
         <cite>
-          <Link href={`/users/${data.poster.id.toString()}`}>
+          <Link
+            className={styles.userPostLi}
+            href={`/users/${data.poster._id.toString()}`}
+          >
             By: {data.poster.firstName} {data.poster.lastName}
           </Link>
           <br />
@@ -47,7 +51,6 @@ export default async function PostById({params}) {
   }
 
   async function getData(id) {
-    id = await validation.checkId(id, 'ID URL Param');
     const post = await postData.getPostById(id);
     return post;
   }

@@ -42,7 +42,6 @@ export default async function UserById({params}) {
   }
 
   async function getData(id) {
-    id = await validation.checkId(id, 'ID URL Param');
     const user = await userData.getUserById(id);
     return user;
   }

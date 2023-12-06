@@ -28,7 +28,7 @@ const exportedMethods = {
     userId = validation.checkId(userId, 'User ID');
     const postCollection = await posts();
     let postList = await postCollection
-      .find({'poster.id': new ObjectId(userId)})
+      .find({'poster._id': new ObjectId(userId)})
       .toArray();
     return postList;
   },
@@ -49,7 +49,7 @@ const exportedMethods = {
       title: title,
       body: body,
       poster: {
-        id: new ObjectId(posterId),
+        _id: new ObjectId(posterId),
         firstName: userThatPosted.firstName,
         lastName: userThatPosted.lastName
       },
@@ -85,7 +85,7 @@ const exportedMethods = {
       title: updatedPost.title,
       body: updatedPost.body,
       poster: {
-        id: updatedPost.posterId,
+        _id: updatedPost.posterId,
         firstName: userThatPosted.firstName,
         lastName: userThatPosted.lastName
       },
@@ -104,7 +104,7 @@ const exportedMethods = {
   async updatePostPatch(id, updatedPost) {
     const updatedPostData = {};
     if (updatedPost.posterId) {
-      updatedPostData['poster.id'] = validation.checkId(
+      updatedPostData['poster._id'] = validation.checkId(
         updatedPost.posterId,
         'Poster ID'
       );

@@ -30,7 +30,6 @@ export default async function PostByTag({params}) {
   }
 
   async function getData(tag) {
-    tag = await validation.checkString(tag, 'Tag URL Param');
     const postList = await postData.getPostsByTag(tag);
     return postList;
   }
