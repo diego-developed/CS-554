@@ -28,7 +28,9 @@ export default async function PostById({params}) {
         <br />
         <br />
         <cite>
-          By: {data.poster.firstName} {data.poster.lastName}
+          <Link href={`/users/${data.poster.id.toString()}`}>
+            By: {data.poster.firstName} {data.poster.lastName}
+          </Link>
           <br />
           Post ID: {data._id.toString()}
         </cite>
@@ -42,6 +44,7 @@ export default async function PostById({params}) {
   async function getData(id) {
     id = await validation.checkId(id, 'ID URL Param');
     const post = await postData.getPostById(id);
+    console.log(post);
     return post;
   }
 }

@@ -25,6 +25,16 @@ const exportedMethods = {
     if (postList.length === 0) throw `Error: No posts with tag ${tag}`;
     return postList;
   },
+  async getPostsByUserId(userId) {
+    userId = validation.checkId(userId, 'User ID');
+    const postCollection = await posts();
+    let postList = await postCollection
+      .find({'poster.id': new ObjectId(userId)})
+      .toArray();
+    console.log(userId);
+    //if (postList.length === 0) throw `Error: No posts with tag ${tag}`;
+    return postList;
+  },
   async addPost(title, body, posterId, tags) {
     title = validation.checkString(title, 'Title');
     body = validation.checkString(body, 'Body');

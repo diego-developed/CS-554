@@ -51,7 +51,6 @@ export async function createPost(prevState, formData) {
       let newPost = await postData.addPost(title, body, posterId, tags);
       id = newPost._id.toString();
       success = true;
-
       //redirect(`/posts/${id}`); // Navigate to new route
     } catch (e) {
       return {message: e};
