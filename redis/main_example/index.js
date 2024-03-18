@@ -24,6 +24,7 @@ const main = async () => {
     .set('favoriteDrink', 'coffee')
     .set('favoriteFood', 'steak')
     .set('cake', 'is a lie')
+    .expire('hello', 20)
     .exec();
   console.log(batchResult);
 
@@ -61,7 +62,7 @@ const main = async () => {
       1: 'making low carb recipes',
       sport: 'Baseball'
     },
-    age: 47
+    age: 48
   };
 
   let flatBio = flat(bio);

@@ -1,5 +1,4 @@
 import {postData} from '@/data/index.js';
-import validation from '@/data/validation';
 import Link from 'next/link';
 import styles from './postdetails.module.css';
 export default async function PostById({params}) {

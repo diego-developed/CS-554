@@ -6,6 +6,7 @@ function DomElements() {
 
   const focusInput = () => {
     inputElement.current.focus();
+    inputElement.current.value = 'PATRICK Hill';
   };
 
   const inputChange = () => {

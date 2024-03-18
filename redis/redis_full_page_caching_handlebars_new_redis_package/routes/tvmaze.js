@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
   let {data} = await axios.get('http://api.tvmaze.com/shows');
   res.render('shows/showlist', {shows: data}, async (err, html) => {
     await client.set('showListHomepage', html);
+    //console.log('HTML Stored in Cache', html);
     res.send(html);
   });
 });
@@ -56,7 +57,7 @@ router.post('/search', async (req, res) => {
     //If the search term is not found in the list, then we know to add it
     await client.zAdd('searchTerms', {
       score: 1,
-      value: searchQuery.toLowerCase(),
+      value: searchQuery.toLowerCase()
     });
   }
 

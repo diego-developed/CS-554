@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import {postData} from '@/data/index.js';
 export const dynamic = 'force-dynamic';
-import validation from '@/data/validation';
 import styles from './posts.module.css';
 export default async function PostByTag({params}) {
   try {

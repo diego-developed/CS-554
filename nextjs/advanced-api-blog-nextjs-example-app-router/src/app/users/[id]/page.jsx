@@ -1,7 +1,7 @@
 import {userData, postData} from '@/data/index.js';
-import validation from '@/data/validation';
 import Link from 'next/link';
 import styles from './userdetails.module.css';
+
 export default async function UserById({params}) {
   try {
     const data = await getData(params.id);

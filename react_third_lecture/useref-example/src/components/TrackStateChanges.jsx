@@ -5,6 +5,7 @@ function TrackStateChanges() {
   const previousInputValue = useRef('');
 
   useEffect(() => {
+    console.log('useEffect fired');
     previousInputValue.current = inputValue;
   }, [inputValue]);
 

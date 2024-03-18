@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import SearchShows from './SearchShows';
 import ShowListCard from './ShowListCard';
-import {Card, Grid} from '@mui/material';
+import {Grid} from '@mui/material';
 
 import '../App.css';
 
