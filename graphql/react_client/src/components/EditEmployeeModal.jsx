@@ -47,7 +47,6 @@ function EditEmployeeModal(props) {
   }
   return (
     <div>
-      {/*Edit Employee Modal - NOT DONE YET */}
       <ReactModal
         name='editModal'
         isOpen={showEditModal}

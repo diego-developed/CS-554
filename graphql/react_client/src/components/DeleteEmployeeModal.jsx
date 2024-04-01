@@ -30,14 +30,14 @@ function DeleteEmployeeModal(props) {
     update(cache) {
       cache.modify({
         fields: {
-          employees(existingEmployees, { readField }) {
+          employees(existingEmployees, {readField}) {
             return existingEmployees.filter(
-              empRef => employee._id !== readField('_id', empRef),
+              (empRef) => employee._id !== readField('_id', empRef)
             );
-          },
-        },
+          }
+        }
       });
-    },
+    }
   });
 
   const handleCloseDeleteModal = () => {
